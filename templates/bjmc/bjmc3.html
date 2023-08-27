@@ -1,0 +1,443 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Application Form for Management Quota Seats for MAIMS ">
+	<title>MAIMS BJMC Application</title>
+	<link rel="stylesheet" href="../../static/output_btech.css">
+	<link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+	<!-- Main Header Starts -->
+	<div class="header bg-blue-950 flex shadow shadow-black">
+		<img class="w-[250px] sm:w-[250px]" src="../../static/media/maitlogomain.png" alt="MAIMS" />
+		<p class="font-semibold mx-5 text-2xl sm:text-5xl text-white">
+			BJMC Application Form
+		</p>
+	</div>
+	<!-- Main Header Ends -->
+	<!-- If user tries to go to payment without filling this tab -->
+	{% if messages %}
+		{% for message in messages %}
+			{% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+		{% endfor %}
+	{% endif %}
+    <!-- Outermost Div Starts -->
+	<div class="outermost-div bg-blue-100">
+		<!-- Main Card Starts -->
+		<div class="flex main-card w-[90%]  m-auto lg:flex-row flex-col  bg-gray-100 px-5">
+
+            <!-- Progress Bar Starts -->
+			<div class="form-fields lg:mr-16 flex gap-2 flex-col top-0 h-[50%] relative lg:sticky pt-10">
+				<!-- we will check one field of each tag -->
+				<!-- if that field is filled then we will make border green, otherwise it will remian black -->
+				<!-- Checking first tab by candidate_first_name -->
+				{% if record.candidate_first_name %}
+					<a href="/bjmc1/">
+						<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc1/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking second tab by father_first_name -->
+				{% if record.father_first_name %}
+					<a href="/bjmc2/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Parent and Guardian Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc2/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+							Parent and Guardian Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking third tab by board_10th -->
+				{% if record.board_10th %}
+					<a href="/bjmc3/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc3/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking fourth tab by cet_rollno -->
+				{% if record.cet_rollno %}
+					<a href="/bjmc4/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc4/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility</p>
+					</a>
+				{% endif %}
+				<!-- Checking fifth tab by passport_photo -->
+				{% if record.passport_photo %}
+					<a href="/bjmc5/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc5/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents</p>
+					</a>
+				{% endif %}
+				<a href="/bjmc6/">
+				<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+					Payment</p>
+				</a>
+			</div>
+			<!-- Progress Bar Ends -->
+
+            <!-- FORM starts -->
+			<form action="/bjmc3/" method="post" id="myForm" enctype="multipart/form-data">
+				{% csrf_token %}
+
+                <div class="form m-auto pt-2 pl-5">
+                    <h1 class="text-red-600 text-3xl font-medium">
+						Application form for Management Quota Seats : BJMC 2023-24
+					</h1>
+					<p class="centered" style="color: #8597a3;">(Fields marked with * are mandatory)</p>
+					<br>
+
+					<!-- Third Tab to be displayed: 10th 12th Result Details -->
+					<div class="tab">
+						<div class="10th/12th-details">
+							<br>
+							<p class="text-xl mb-3 text-red-600 font-medium">6. Result*</p>
+							<div class="sm:w-max w-[250px] sm:flex-col justify-center px-5 flex-row flex gap-3">
+								<div class="flex w-[200px] sm:w-[650px] sm:flex-row flex-col justify-between gap-2">
+									<p class="text-red-600 font-semibold">Examination</p>
+									<p class="text-red-600 font-semibold">Board/University</p>
+									<p class="text-red-600 font-semibold">Year</p>
+									<p class="text-red-600 font-semibold sm:ml-6">Roll No.</p>
+									<p class="text-red-600 font-semibold ">Name of the School</p>
+								</div>
+								<div class="flex w-[100px] sm:w-[650px] sm:flex-row sm:mr-8 flex-col justify-between">
+									<p class="ml-10 w-20 font-medium text-red-600">12<sup>th</sup></p>
+									<input
+										class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-20 sm:w-28"
+										type="text" placeholder="" name="board_12th" required value="{{record.board_12th}}">
+										<!-- We are storing all integer values as null on temporary saving, so to avoid rendering null(None), we are writing a simple if else-->
+									<input
+										class="input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 h-6"
+										type="text" placeholder="" name="year_of_12th" id="year_of_12th" required oninput="validateYear(this.id);" {% if record.year_of_12th == None %} value="" {% else %} value="{{record.year_of_12th}}" {% endif %}>
+									<input
+										class="input-field input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-32 h-6"
+										type="text" placeholder="" name="rollno_12th" id="rollno_12th" required oninput="validateRank(this.id);" {% if record.year_of_12th == None %} value="" {% else %} value="{{record.rollno_12th}}" {% endif %}>
+
+									<input
+										class="input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-32 h-6"
+										type="text" placeholder="" name="school_12th" required value="{{record.school_12th}}">
+
+								</div>
+								<div class="flex w-[100px] sm:w-[650px] sm:flex-row flex-col justify-between">
+									<p class="ml-10 w-20 font-medium text-red-600">10<sup>th</sup></p>
+									<input
+										class="input-field input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-28 h-6"
+										type="text" placeholder="" name="board_10th" required value="{{record.board_10th}}">
+									<input
+										class="input-field input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 h-6"
+										type="text" placeholder="" name="year_of_10th" id="year_of_10th" required oninput="validateYear(this.id);" {% if record.year_of_12th == None %} value="" {% else %} value="{{record.year_of_10th}}" {% endif %}>
+
+									<input
+										class="input-field input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-32 h-6"
+										type="text" placeholder="" name="rollno_10th" id="rollno_10th" required oninput="validateRank(this.id);" {% if record.year_of_12th == None %} value="" {% else %} value="{{record.rollno_10th}}" {% endif %}>
+
+									<input
+										class="input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-32 h-6"
+										type="text" placeholder="" name="school_10th" required value="{{record.school_10th}}">
+								</div>
+
+							</div>
+							<div class=" flex flex-wrap gap-5 pt-10 m-0">
+								<div class="12th-class">
+									<p class="font-medium text-lg text-red-600">In class 12th indicate % marks in:</p>
+									<div class="flex flex-col w-52 gap-2">
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">1<sup>st</sup> Subject*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="first_subject_12th" id="mark2"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												 required {% if record.year_of_12th == None %} value="" {% else %}  value="{{record.first_subject_12th}}" {% endif %}>
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600 ">2<sup>nd</sup> Subject*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="second_subject_12th" id="mark3"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												 required {% if record.year_of_12th == None %} value="" {% else %}  value="{{record.second_subject_12th}}" {% endif %}>
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">3<sup>rd</sup> Subject*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="third_subject_12th" id="mark4"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												 required {% if record.year_of_12th == None %} value="" {% else %}  value="{{record.third_subject_12th}}" {% endif %}>
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">4<sup>th</sup> Subject*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="fourth_subject_12th" id="mark1"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												 required  {% if record.year_of_12th == None %} value="" {% else %} value="{{record.fourth_subject_12th}}"  {% endif %}>
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">5<sup>th</sup> subject</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="other_subject_12th" id="mark5"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												value="{{record.other_subject_12th}}" >
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">6<sup>th</sup> subject</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="other_subject_2_12th" id="mark6"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												value="{{record.other_subject_2_12th}}" >
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">Aggregate</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28 disabled:bg-gray-300"
+												style="background-color:lightgrey;" type="text" placeholder="" readonly
+												name="aggregate_12th" id="percentageOutput" required {% if record.year_of_12th == None %} value="" {% else %} value="{{record.aggregate_12th}}" {% endif %}>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="10th-class ">
+									<p class="font-medium text-lg text-red-600">In class 10th indicate % marks in:</p>
+									<div class="flex flex-col w-52 gap-2">
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">Maths*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="maths_10th" id="mark1_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												 required {% if record.year_of_12th == None %} value="" {% else %} value="{{record.maths_10th}}" {% endif %}>
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">Science*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="science_10th" id="mark2_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												 required {% if record.year_of_12th == None %} value="" {% else %} value="{{record.science_10th}}" {% endif %}>
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">English*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="english_10th" id="mark3_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												 required {% if record.year_of_12th == None %} value="" {% else %} value="{{record.english_10th}}" {% endif %}>
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">SST*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="sst_10th" id="mark4_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												 required {% if record.year_of_12th == None %} value="" {% else %} value="{{record.sst_10th}}" {% endif %}>
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">5<sup>th</sup> Subject</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="other_subject_10th" id="mark5_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												value="{{record.other_subject_10th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">6<sup>th</sup>Subject</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="other_subject_2_10th" id="mark6_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												value="{{record.other_subject_2_10th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">Aggregate</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28 disabled:bg-gray-300"
+												style="background-color:lightgrey;" readonly type="text" placeholder=""
+												name="aggregate_10th" id="percentageOutput2" required {% if record.year_of_12th == None %} value="" {% else %} value="{{record.aggregate_10th}}" {% endif %}>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p id="warning2"></p>
+					</div>
+					<!-- Third Tab Ends Here -->
+					<!-- Save and Next Button -->
+					<div class="flex justify-between pt-9">
+						<button
+                            class="text-lg bg-slate-300 hover:bg-zinc-700 hover:text-zinc-400 hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm"
+                            id="nextBtn">
+                            Save and Next&rarr;
+                        </button>
+					</div>
+				</div>
+			</form>
+            <!-- FORM ends -->
+        </div>
+		<!-- Main Card ends -->
+	</div>
+	<!-- The outermost Div ends -->
+</body>
+
+<script>
+
+	// To convert each input with type text to uppercase
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const textInputs = document.querySelectorAll('input[type="text"]');
+        
+        textInputs.forEach((input) => {
+          input.addEventListener('input', () => {
+            input.value = input.value.toUpperCase();
+          });
+        });
+      });
+
+	// for calculating 12th aggregate
+	function calculatePercentage() {
+		var mark1 = parseFloat(document.getElementById("mark1").value);
+		var mark2 = parseFloat(document.getElementById("mark2").value);
+		var mark3 = parseFloat(document.getElementById("mark3").value);
+		var mark4 = parseFloat(document.getElementById("mark4").value);
+		var mark5 = parseFloat(document.getElementById("mark5").value);
+		var mark6 = parseFloat(document.getElementById("mark6").value);
+		var marks = [mark1, mark2, mark3, mark4, mark5, mark6].filter(function (mark) {
+			return !isNaN(mark);
+		});
+		var totalMarks = marks.reduce(function (a, b) {
+			return a + b;
+		}, 0);
+		var numberOfMarks = marks.length;
+		var percentage = (totalMarks / (numberOfMarks * 100)) * 100;
+		(document.getElementById("percentageOutput")).value = Number(percentage.toFixed(2));
+	}
+
+	//for calculating 10th aggregate
+	function calculatePercentage2() {
+		var mark1_10th = parseFloat(document.getElementById("mark1_10th").value);
+		var mark2_10th = parseFloat(document.getElementById("mark2_10th").value);
+		var mark3_10th = parseFloat(document.getElementById("mark3_10th").value);
+		var mark4_10th = parseFloat(document.getElementById("mark4_10th").value);
+		var mark5_10th = parseFloat(document.getElementById("mark5_10th").value);
+		var mark6_10th = parseFloat(document.getElementById("mark6_10th").value);
+		var marks = [mark1_10th, mark2_10th, mark3_10th, mark4_10th, mark5_10th, mark6_10th].filter(function (mark) {
+			return !isNaN(mark);
+		});
+		var totalMarks = marks.reduce(function (a, b) {
+			return a + b;
+		}, 0);
+		var numberOfMarks = marks.length;
+		var percentage = (totalMarks / (numberOfMarks * 100)) * 100;
+		(document.getElementById("percentageOutput2")).value = Number(percentage.toFixed(2));
+	}
+
+	// for validating marks
+	function validateIntegerValue(id_passed) {
+		const marks = document.getElementById(id_passed);
+		const intValue = parseInt(marks.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (Number.isInteger(intValue) && intValue >= 0 && intValue <= 100) {
+			// Value is a valid integer between 0 and 100
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			marks.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			marks.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a value between 0 and 100";
+		}
+	}
+
+	// for validating rank and rollno. that they are positive
+	function validateRank(id_passed) {
+		const rank = document.getElementById(id_passed);
+		const intValue = parseInt(rank.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (Number.isInteger(intValue) && intValue > 0) {
+			// Value is a valid positive integer
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			rank.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			rank.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a positive integer";
+		}
+	}
+
+	// for validating year
+	function validateYear(id_passed) {
+		const year = document.getElementById(id_passed);
+		const intValue = parseInt(year.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (Number.isInteger(intValue) && intValue >= 2000 && intValue <= 2023) {
+			// Value is a valid integer between 2000 and 2023
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			year.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			year.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter year between 2000 and 2023";
+		}
+	}
+</script>

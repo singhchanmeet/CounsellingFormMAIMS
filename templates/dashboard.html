@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="This is a form for MAIT ">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'login_style.css' %}">
+    <link rel="stylesheet" href="{% static 'output_index.css' %}">
+    <link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-zinc-200">
+
+    <!-- Main Header Starts -->
+    <div class="header bg-blue-950 flex shadow shadow-black">
+        <img class="w-[250px] sm:w-[250px]" src="/static/media/maitlogomain.png" alt="MAIMS" />
+        <p class="font-semibold mx-5 text-2xl sm:text-5xl text-white">
+         Dashboard
+        </p>
+    </div>
+    <!-- Main Header Ends -->
+    <div class=" bg-zinc-200 card flex flex-col justify-center items-center gap-5 m-auto shadow-zinc-400 rounded-md py-10 w-[80%] m-auto my-10">
+        <div class="tiles flex flex-wrap flex-col items-center justify-center gap-5 w-[80%] w-[400px] m-auto">    
+            <div class="text-2xl font-semibold text-red-600 course-name justify-center gap-2 items-center flex flex-wrap  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300 px-5 py-3 text-center">
+                {% if course == "BBA" %}<a href="/bba-preview"> Preview Submitted Details </a>{% endif %}
+                {% if course == "BCOM" %}<a href="/bcom-preview"> Preview Submitted Details</a>{% endif %}
+                {% if course == "BJMC" %}<a href="/bjmc-preview"> Preview Submitted Details </a>{% endif %}
+                {% if course == "ECO" %}<a href="/eco-preview"> Preview Submitted Details </a>{% endif %}
+                {% if course == "BALLB" %}<a href="/ballb-preview"> Preview Submitted Details </a>{% endif %}
+                {% if course == "BBALLB" %}<a href="/bballb-preview"> Preview Submitted Details </a>{% endif %}
+                {% if course == "LLM" %}<a href="/llm-preview"> Preview Submitted Details </a>{% endif %}
+            </div>
+            <!-- If user is allowed to proceed for counselling then we will show this button -->
+            {% if record.allow_for_counselling %}
+            <div class="text-2xl text-center font-semibold text-red-600 course-name justify-center gap-2 items-center flex flex-wrap w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300">
+                <a href="/counselling"> Pay Counselling Fees</a>
+            </div>
+            {% endif %}
+            <!-- If user is allowed to edit the record then we will show this button -->
+            {% if record.allow_editing %}
+            <div class="text-2xl font-semibold text-red-600 course-name justify-center gap-2 items-center flex flex-wrap  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300 px-5 py-3 text-center">
+                {% if course == "BBA" %}<a href="/bba-edit"> Edit Submitted Details </a>{% endif %}
+                {% if course == "BCOM" %}<a href="/bcom-edit"> Edit Submitted Details</a>{% endif %}
+                {% if course == "BJMC" %}<a href="/bjmc-edit"> Edit Submitted Details </a>{% endif %}
+                {% if course == "ECO" %}<a href="/eco-edit"> Edit Submitted Details </a>{% endif %}
+                {% if course == "BALLB" %}<a href="/ballb-edit"> Edit Submitted Details </a>{% endif %}
+                {% if course == "BBALLB" %}<a href="/bballb-edit"> Edit Submitted Details </a>{% endif %}
+                {% if course == "LLM" %}<a href="/llm-edit"> Edit Submitted Details </a>{% endif %}
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div><br>
+</body>
+</html>

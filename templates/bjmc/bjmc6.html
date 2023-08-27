@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Application Form for Management Quota Seats for MAIMS ">
+	<title>MAIMS BJMC Application</title>
+	<link rel="stylesheet" href="../../static/output_btech.css">
+	<link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+	<!-- Main Header Starts -->
+	<div class="header bg-blue-950 flex shadow shadow-black">
+		<img class="w-[250px] sm:w-[250px]" src="../../static/media/maitlogomain.png" alt="MAIMS" />
+		<p class="font-semibold mx-5 text-2xl sm:text-5xl text-white">
+			BJMC Application Form
+		</p>
+	</div>
+	<!-- Main Header Ends -->
+	<!-- If user tries to go to payment without filling this tab -->
+	{% if messages %}
+		{% for message in messages %}
+			{% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+		{% endfor %}
+	{% endif %}
+    <!-- Outermost Div Starts -->
+	<div class="outermost-div bg-blue-100">
+		<!-- Main Card Starts -->
+		<div class="flex main-card w-[90%]  m-auto lg:flex-row flex-col  bg-gray-100 px-5">
+
+            <!-- Progress Bar Starts -->
+			<div class="form-fields lg:mr-16 flex gap-2 flex-col top-0 h-[50%] relative lg:sticky pt-10">
+				<!-- we will check one field of each tag -->
+				<!-- if that field is filled then we will make border green, otherwise it will remian black -->
+				<!-- Checking first tab by candidate_first_name -->
+				{% if record.candidate_first_name %}
+					<a href="/bjmc1/">
+						<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc1/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking second tab by father_first_name -->
+				{% if record.father_first_name %}
+					<a href="/bjmc2/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Parent and Guardian Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc2/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+							Parent and Guardian Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking third tab by board_10th -->
+				{% if record.board_10th %}
+					<a href="/bjmc3/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc3/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking fourth tab by cet_rollno -->
+				{% if record.cet_rollno %}
+					<a href="/bjmc4/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc4/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility</p>
+					</a>
+				{% endif %}
+				<!-- Checking fifth tab by passport_photo -->
+				{% if record.passport_photo %}
+					<a href="/bjmc5/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bjmc5/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents</p>
+					</a>
+				{% endif %}
+				<a href="/bjmc6/">
+				<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+					Payment</p>
+				</a>
+			</div>
+			<!-- Progress Bar Ends -->
+
+			<!-- If transaction_proof is already submitted then we will only give a preview option -->
+			<!-- Else we will show the normal form -->
+			{% if record.transaction_id %}
+				<div class="form">
+					<p class="text-xl mb-3 text-red-600 font-medium">Transaction ID/Reference No.*</p>
+					<input class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+						placeholder="Transaction ID" type="text" name="transaction_id" required value="{{record.transaction_id}}" />
+					<br>
+					<a class="underline" style="color: blue;" href="{{ record.transaction_proof.url }}" target="_blank" >Transaction Proof</a>
+					<button class="text-lg bg-slate-300 hover:bg-zinc-300 hover:text-zinc-700 hover:cursor-pointer hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm action-button ml-10">
+						<a href="/bjmc">Preview and Edit</a>
+					</button>
+				</div>
+			{% else %}
+
+				<!-- FORM starts -->
+				<form action="/bjmc6/" method="post" id="myForm" enctype="multipart/form-data">
+					{% csrf_token %}
+
+					<div class="form m-auto pt-2 pl-5">
+						<h1 class="text-red-600 text-3xl font-medium">
+							Application form for Management Quota Seats : BJMC 2023-24
+						</h1>
+						<p class="centered" style="color: #8597a3;">(Fields marked with * are mandatory)</p>
+						<br>
+
+						<!-- Sixth Tab: Transactions:  -->
+						<div class="tab">
+							<br>
+							<hr class="text-gray-700 bg-gray-300 p-[1px] w-[80%] m-auto">
+							<br>
+							<p class="text-xl mb-3 text-red-600 font-medium"> Please Pay the Registration Fees on the following link&nbsp
+								<span class="text-blue-600 text-[1.3rem] ">
+							<a href="https://eps.eshiksa.net/DirectFeesv3/MAIT_Registration" target="_blank" class="underline" style="color: blue;">Pay Fees</a></span></p>
+							<p class="text-xl mb-3 text-red-600 font-medium"><strong> WARN: Please note the Transaction ID and take screenshot of Payment Proof </strong></p>
+							<p class="text-xl mb-3 text-red-600 font-medium"><strong> WARN: Please don't close this tab while paying fees </strong></p>
+							<br>
+							<hr class="text-gray-700 bg-gray-300 p-[1px] w-[80%] m-auto">
+							<br><br>
+							<p class="text-xl mb-3 text-red-600 font-medium">Transaction ID/Reference No.*</p>
+								<input class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+									placeholder="Transaction ID" type="text" name="transaction_id" required />
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Upload Transaction Proof*</label><br>
+									<p class="text-sm">(Please upload in JPG/JPEG or PDF format only)</p>
+									<input name="transaction_proof"
+										class=" sm:w-[300px] w-[250px] rounded-md border-2 border-blue-700 text-gray-600 my-4 bg-gray-200"
+										type="file" required id="myfile7">
+								</div>
+							</div>
+							<hr class="text-gray-700 bg-gray-300 p-[1px] w-[80%] m-auto"><br>
+							<div class="text-center">
+								<button
+									class="text-lg bg-slate-300 hover:bg-zinc-700 hover:text-zinc-400 hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm w-64 text-center"
+									type="submit" id="preview">
+									Preview & Edit
+								</button>
+							</div>
+						</div>
+						<!-- Seventh Tab Ends Here -->
+					</div>
+				</form>
+				<!-- FORM ends -->
+			{% endif %}
+        </div>
+		<!-- Main Card ends -->
+	</div>
+	<!-- The outermost Div ends -->
+</body>

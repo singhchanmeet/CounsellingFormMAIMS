@@ -1,0 +1,439 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is an admission form for MAIMS ">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <title>MAIMS BALLB Application</title>
+    <link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../static/preview_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-blue-50">
+
+    <div id="{{record.cet_rank}}" class="">
+        {% comment %} Main Card starts {% endcomment %}
+        <div class="card p-6">
+            <div class="centered">
+                <p class="text-xl font-medium"> Form Submitted Successfully at {{record.created_at}} </p>
+                <!-- Log Out Button -->
+                <button class="text-lg bg-slate-300 hover:bg-zinc-300 hover:text-zinc-700 hover:cursor-pointer hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm action-button ml-10">
+                    <a href="/login">Log Out</a>
+                </button>
+            </div><br>
+            <div class="centered">
+                <h1 class="input-label-main text-red-600 text-xl font-medium">GGSIPU Registration No. : {{record.ipu_registration}}
+                </h1>
+            </div><br>
+            {% if record.counselling_transaction_id %}
+            <div class="centered">
+                <h1 class="input-label-main text-red-600 text-xl font-medium">Counselling Fee Transaction ID: {{record.counselling_transaction_id}}
+                </h1><h1 class="input-label-main text-red-600 text-xl font-medium ml-10"></h1><a target="_blank" class="underline" style="color: blue;" href="{{ record.counselling_transaction_proof.url }}">Counselling Fee Proof<a> <br>
+            </div>
+            {% endif %}
+            {% comment %} FORM Starts {% endcomment %}
+            <form class="card-form" method="post">
+                {% csrf_token %}
+                {% comment %} candidate details {% endcomment %}
+                <div class="flex topcandidatediv flex-wrap-reverse lg:justify-between" >
+                    <div class="input flex flex-col gap-2">
+                        <div class="flex lg:w-[600px] flex-wrap">
+                            <p class="input-label text-lg text-blue-600 font-medium">1. Name of the
+                                Candidate: </p>
+                            <input type="text"
+                                class="input-field-candidate bg-transparent text-zinc-800 placeholder:text-transparent"
+                                placeholder="First Name*" value="   {{record.candidate_first_name}} {{record.candidate_middle_name}} {{record.candidate_last_name}}" readonly />
+                        </div>
+                        <div class="flex lg:w-[600px] flex-wrap">
+                            <p class="input-label text-lg text-blue-600 font-medium">2. Name of
+                                Father: </p>
+                            <input type="text"
+                                class="input-field-candidate bg-transparent text-zinc-800 placeholder:text-transparent"
+                                placeholder="First Name*" value="   {{record.father_first_name}} {{record.father_middle_name}} {{record.father_last_name}}" readonly />
+                        </div>
+                        <div class="flex lg:w-[600px] flex-wrap">
+                            <p class="input-label text-lg text-blue-600 font-medium">3. Name of
+                                Mother: </p>
+                            <input type="text"
+                                class="input-field-candidate bg-transparent text-zinc-800 placeholder:text-transparent"
+                                placeholder="First Name*" value="   {{record.mother_first_name}} {{record.mother_middle_name}} {{record.mother_last_name}}" readonly />
+                        </div>
+                        <div class="flex lg:w-[600px] flex-wrap">
+                            <p class="input-label text-lg text-blue-600 font-medium">4. Name of
+                                Guardian: </p>
+                            <input type="text"
+                                class="input-field-candidate bg-transparent text-zinc-800 placeholder:text-transparent"
+                                placeholder="First Name*" value="   {{record.guardian_name}}" readonly />
+                        </div>
+                    </div>
+                    <div class="input mainimg">
+                        <img src="{{record.passport_photo.url}}" class="w-[150px] m-auto">
+                    </div>
+                </div>
+                <br>
+                {% comment %} Father Mother Table {% endcomment %}
+                <label class="input-label text-lg mb-3 text-blue-600 font-medium">5. Highest Educational Qualification &
+                    Occupation of :</label>
+                <div class="input">
+                    <table class="">
+                        <tr class="qualification-details">
+                            <th class=""></th>
+                            <th class="text-red-600 text-lg font-semibold ">Father</th>
+                            <th class="text-red-600 text-lg font-semibold ">Mother</th>
+                        </tr>
+                        <tr class="qualification-details">
+                            <td class="text-red-600 semibold font-medium ">Qualifications*</td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center align-center"
+                                    type="text" placeholder="Father's Qualification"
+                                    value="{{record.father_qualification}}" readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Mother's Qualification"
+                                    value="{{record.mother_qualification}}" readonly>
+                            </td>
+                        </tr>
+                        <tr class="qualification-details">
+                            <td class="text-red-600 semibold font-medium">Profession (Job/Business)*</td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Father's Occupation" value="{{record.father_job}}"
+                                    readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Mother's Occupation" value="{{record.mother_job}}"
+                                    readonly>
+                            </td>
+                        </tr>
+                        <tr class="qualification-details">
+                            <td class="text-red-600 semibold font-medium">If in Job, Designation and Name of Department
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" value="{{record.father_job_designation}}"
+                                    placeholder="Father's Designation" readonly />
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" value="{{record.mother_job_designation}}"
+                                    placeholder="Mother's Designation" readonly />
+                            </td>
+                        </tr>
+                        <tr class="qualification-details">
+                            <td class="text-red-600 semibold font-medium">If in business, Kind of Business</td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Father's Business" value="{{record.father_business_type}}"
+                                    readonly />
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Mother's Business" value="{{record.mother_business_type}}"
+                                    readonly />
+                            </td>
+                        </tr>
+                        <tr class="qualification-details">
+                            <td class="text-red-600 semibold font-medium">Contact No.*</td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Father's Contact No." value="{{record.father_number}}"
+                                    readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Mother's Contact No." value="{{record.mother_number}}"
+                                    readonly>
+                            </td>
+                        </tr>
+                        <tr class="qualification-details">
+                            <td class="text-red-600 semibold font-medium">Official Address</td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Father's Office Address"
+                                    value="{{record.father_office_address}}" readonly />
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                    type="text" placeholder="Mother's Office Address"
+                                    value="{{record.mother_office_address}}" readonly />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <div class="input flex flex-col gap-2">
+                    <label class="input-label text-lg text-blue-600 font-medium ">6. Complete Postal Address of
+                        Father/Guardian*</label>
+                    <input type="text" class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                        value="{{record.complete_address}}" placeholder="Complete Address*" readonly />
+                </div>
+                <br>
+                <div class="input candidate-details">
+                        <div class="flex justify-between flex-wrap">
+                            <div class="flex flex-col">
+                                <label class="text-red-600 semibold font-medium">Candidate's Mobile*</label>
+                                <input
+                                class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                type="text" placeholder="Candidate's Mobile*" value="{{record.candidate_number}}"
+                                readonly />
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-red-600 semibold font-medium">Candidate's Email*</label>
+                                <input
+                                class="input-field-candemail bg-transparent text-zinc-800 placeholder:text-transparent text-center w-full"
+                                type="email " placeholder="Candidate's Email*" value="{{record.email}}" readonly />
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-red-600 semibold font-medium">Telephone</label>
+                                <input
+                                class="input-field bg-transparent text-zinc-800 placeholder:text-transparent text-center"
+                                type="text" value="{{record.phone}}" placeholder="Telephone" />
+                            </div>
+                        </div>
+                </div>
+                <br>
+                <div class="flex justify-between lg:w-[550px]">
+                    <div class="input flex flex-col gap-2">
+                        <label class="input-label text-lg mb-3 text-blue-600 font-medium">7. Date of Birth of
+                            Candidate*</label>
+                        <input type="text" class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                            value="{{record.dob}}" readonly />
+                    </div>
+                    <br>
+                    <div class="input flex flex-col gap-2">
+                        <label class="input-label text-lg mb-3 text-blue-600 font-medium">Gender*</label>
+                        <input type="text" class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                            value="{{record.gender}}" readonly placeholder="Candidate's Gender" />
+                    </div>
+                </div><br>
+                <div class="flex justify-between lg:w-[550px]">
+                    <div class="input flex flex-col gap-2">
+                        <label class="input-label text-lg mb-3 text-blue-600 font-medium">8. Region*</label>
+                        <input type="text" class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                            value="{{record.region}}" readonly />
+                    </div>
+                    <br>
+                    <div class="input flex flex-col gap-2">
+                        <label class="input-label text-lg mb-3 text-blue-600 font-medium">Category*</label>
+                        <input type="text" class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                            value="{{record.category}}" readonly placeholder="Candidate's Gender" />
+                    </div>
+                </div>
+                <br>
+                <label class="input-label text-lg mb-3 text-blue-600 font-medium">9. Result*</label>
+                <div class="input">
+                    <table class="border-collapse result-9 lg:">
+                        <tr>
+                            <th class="text-red-600 semibold font-medium">Examination</th>
+                            <th class="text-red-600 semibold font-medium">Board/University</th>
+                            <th class="text-red-600 semibold font-medium">Year</th>
+                            <th class="text-red-600 semibold font-medium">Roll No.</th>
+                            <th class="text-red-600 semibold font-medium">Name of the School</th>
+                        </tr>
+                        <tr>
+                            <td class="text-red-600 semibold font-medium">12<sup>th</sup></td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-center text-zinc-800 placeholder:text-transparent"
+                                    type="text" placeholder="" value="{{record.board_12th}}" readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 text-center placeholder:text-transparent"
+                                    type="text" placeholder="" value="{{record.year_of_12th}}" readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 text-center placeholder:text-transparent"
+                                    type="text" placeholder="" value="{{record.rollno_12th}}" readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 text-center placeholder:text-transparent"
+                                    type="text" placeholder="" value="{{record.school_12th}}" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-red-600 semibold font-medium">10<sup>th</sup></td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 text-center placeholder:text-transparent"
+                                    type="text" placeholder="" value="{{record.board_10th}}" readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 text-center placeholder:text-transparent"
+                                    type="text" placeholder="" value="{{record.year_of_10th}}" readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 text-center placeholder:text-transparent"
+                                    type="text" placeholder="" value="{{record.rollno_10th}}" readonly>
+                            </td>
+                            <td class=""><input
+                                    class="input-field bg-transparent text-zinc-800 text-center placeholder:text-transparent"
+                                    type="text" placeholder="" value="{{record.school_10th}}" readonly>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                {% comment %} 10th and 12th Marks {% endcomment %}
+                <div class="flex justify-between marks flex-wrap lg:w-[700px]">
+                    <div class="12th-marks w-[300px] flex flex-col gap-2">
+                        <div class="input-label">
+                            <strong class="text-blue-600 semibold font-medium">In class 12th % marks
+                                in:</strong>
+                        </div>
+                        <div class="input flex flex-col gap-2">
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">1<sup>st</sup> Subject*</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    value="{{record.first_subject_12th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">2<sup>nd</sup> Subject*</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    value="{{record.second_subject_12th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">3<sup>rd</sup> Subject*</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    value="{{record.third_subject_12th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">4<<sup>th</sup> Subject*</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    value="{{record.fourth_subject_12th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">5<sup>th</sup> Subject</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    placeholder="(if any)" value="{{record.other_subject_12th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">6<sup>th</sup> Subject</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    placeholder="(if any)" value="{{record.other_subject_2_12th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">Aggregate</label>
+                                <input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent rounded-sm"
+                                    type="text" value="{{record.aggregate_12th}}"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="10th-marks w-[300px] flex flex-col gap-2">
+                        <div class="input-label">
+                            <strong class="text-blue-600 semibold font-medium">In class 10th % marks
+                                in:</strong>
+                        </div>
+                        <div class="input flex flex-col gap-2">
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">Maths*</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    value="{{record.maths_10th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">Science*</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    value="{{record.science_10th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">English*</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    value="{{record.english_10th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">SST*</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    value="{{record.sst_10th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">5<sup>th</sup> Subject</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    placeholder="(if any)" value="{{record.other_subject_10th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">6<sup>th</sup> Subject</label>
+                                <input type="text"
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                    placeholder="(if any)" value="{{record.other_subject_2_10th}}" readonly>
+                            </div>
+                            <div class="flex justify-between">
+                                <label class="text-red-600 semibold font-medium">Aggregate</label>
+                                <input
+                                    class="input-field bg-transparent text-zinc-800 placeholder:text-transparent rounded-sm"
+                                    type="text" value="{{record.aggregate_10th}}"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                {% comment %} JEE Details {% endcomment %}
+                <div class=" flex flex-col gap-2 jee-result">
+
+                    <div class="input-label text-lg mb-3 text-blue-600 font-medium">10. {{record.cet_or_cuet}} Paper </div>
+                    <div class="w-[300px] input flex flex-col gap-2">
+                        <div class="flex justify-between">
+                            <label class="text-red-600 semibold font-medium"> {{record.cet_or_cuet}} Roll No.*</label>
+                            <input type="text"
+                                class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                value="{{record.cet_rollno}}" readonly>
+                        </div>
+                        <div class="flex justify-between">
+                            <label class="text-red-600 semibold font-medium"> {{record.cet_or_cuet}} Rank*</label>
+                            <input type="text"
+                                class="input-field bg-transparent text-zinc-800 placeholder:text-transparent"
+                                value="{{record.cet_rank}}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                {% comment %} GGSIPU Registration Number {% endcomment %}
+                <div class="flex lg:w-[600px] flex-wrap">
+                    <p class="input-label text-lg text-blue-600 font-medium">11. GGSIPU Registration
+                        Number: </p>
+                    <input type="text"
+                        class="input-field-candidate bg-transparent text-zinc-800 placeholder:text-transparent"
+                        placeholder="" value="   {{record.ipu_registration}}" readonly />
+                </div>
+                <br>
+                {% comment %} Special Achievements {% endcomment %}
+                <div class="input-label text-lg text-blue-600 font-medium">
+                    12. Any special achievement(s) in academics/co-curricular/cultural/sports activities :</div>
+                <div class="input mt-5">
+                    <input type="text"
+                        class="input-field bg-transparent text-zinc-800 placeholder:text-transparent w-full"
+                        value="{{record.special_achievements}}" readonly>
+                </div>
+                <br>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

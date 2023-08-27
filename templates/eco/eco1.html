@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Application Form for Management Quota Seats for MAIMS ">
+	<title>MAIMS ECO-HONS Application</title>
+	<link rel="stylesheet" href="../../static/output_btech.css">
+	<link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Main Header Starts -->
+	<div class="header bg-blue-950 flex shadow shadow-black">
+		<img class="w-[250px] sm:w-[250px]" src="../../static/media/maitlogomain.png" alt="MAIMS" />
+		<p class="font-semibold mx-5 text-2xl sm:text-5xl text-white">
+			ECO-HONS Application Form
+		</p>
+	</div>
+	<!-- Main Header Ends -->
+	<!-- If user tries to go to payment without filling this tab -->
+	{% if messages %}
+		{% for message in messages %}
+			{% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+		{% endfor %}
+	{% endif %}
+	<!-- Outermost Div Starts -->
+	<div class="outermost-div bg-blue-100">
+		<!-- Main Card Starts -->
+		<div class="flex main-card w-[90%]  m-auto lg:flex-row flex-col  bg-gray-100 px-5">
+
+			<!-- Progress Bar Starts -->
+			<div class="form-fields lg:mr-16 flex gap-2 flex-col top-0 h-[50%] relative lg:sticky pt-10">
+				<!-- we will check one field of each tag -->
+				<!-- if that field is filled then we will make border green, otherwise it will remian black -->
+				<!-- Checking first tab by candidate_first_name -->
+				{% if record.candidate_first_name %}
+					<a href="/eco1/">
+						<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco1/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking second tab by father_first_name -->
+				{% if record.father_first_name %}
+					<a href="/eco2/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Parent and Guardian Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco2/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+							Parent and Guardian Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking third tab by board_10th -->
+				{% if record.board_10th %}
+					<a href="/eco3/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco3/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking fourth tab by cet_rollno -->
+				{% if record.cet_rollno %}
+					<a href="/eco4/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco4/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility</p>
+					</a>
+				{% endif %}
+				<!-- Checking fifth tab by passport_photo -->
+				{% if record.passport_photo %}
+					<a href="/eco5/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco5/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents</p>
+					</a>
+				{% endif %}
+				<a href="/eco6/">
+				<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+					Payment</p>
+				</a>
+			</div>
+			<!-- Progress Bar Ends -->
+
+			<!-- FORM starts -->
+			<form action="/eco1/" method="post" id="myForm" enctype="multipart/form-data">
+				{% csrf_token %}
+
+				<div class="form m-auto pt-2 pl-5">
+					<h1 class="text-red-600 text-3xl font-medium">
+						Application form for Management Quota Seats : ECO-HONS 2023-24
+					</h1>
+					<p class="centered" style="color: #8597a3;">(Fields marked with * are mandatory)</p>
+					<br>
+					
+					<!-- First Tab to be displayed: Candidate Details -->
+					<div class="tab">
+						<div class="candidate-details pt-8 flex flex-col">
+							<div class="flex flex-col flex-wrap">
+								<p class="text-xl mb-3 text-red-600 font-medium">
+									1. Name of the Candidate*
+								</p>
+								<div class="flex-col flex">
+
+									<div class="flex flex-wrap">
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="First Name*" name="candidate_first_name" value="{{record.candidate_first_name}}" required />
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Middle Name(Optional)" name="candidate_middle_name" value="{{record.candidate_middle_name}}" />
+										<input type="text"
+											class="my-2 mx-1 px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Last Name*" name="candidate_last_name" value="{{record.candidate_last_name}}" required />
+									</div>
+								</div>
+							</div>
+							<div class="flex flex-wrap">
+								<div class="flex-col flex mx-3 pt-5">
+									<label class="font-medium text-red-600" for="">Candidate's Mobile*</label><input
+										class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+										required placeholder="Mobile" type="text" name="candidate_number" value="{{record.candidate_number}}"
+										id="candidate_number" oninput="validatenumber(this.id); return false;" />
+								</div>
+								<div class="flex-col flex mx-3 pt-5">
+									<label class="font-medium text-red-600" for="">Candidate's Email*</label><input
+										class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+										required placeholder="Email" type="email" name="email" id="email" value="{{record.email}}"
+										oninput="validateemail(this.id); return false;" />
+								</div>
+								<div class="flex-col flex mx-3 pt-5">
+									<label class="font-medium text-red-600" for="">Candidate's Telephone</label><input
+										class="px-2 py-1 w-[180px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+										placeholder="Telephone" type="text" />
+								</div>
+							</div>
+							<p id="warning"></p>
+							<div class="flex flex-wrap pt-9 gap-5">
+								<div class="flex">
+									<p class="text-xl mb-3 font-medium text-red-600">
+										2. Date of Birth*
+									</p>
+									<!-- Bcoz we cant render dob as a datefield, so rendering it as a text-->
+									{% if record.dob %}
+										<input type="text"
+										class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+										value="{{record.dob|date:'Y-m-d'}}" name="dob" required readonly/>
+									{% else %}
+									<input type="date"
+										class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+										value="{{record.dob}}" name="dob" required />
+									{% endif %}
+								</div>
+								<div class="flex">
+									<p class="text-xl mb-3 font-medium text-red-600">Gender*</p>
+									<select name="gender"
+										class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+										required>
+										<option class="" value="{{record.gender}}" selected hidden>
+											{% if record.gender %} 
+												{{ record.gender }} 
+											{% else %}
+												--Select-- 
+											{% endif %}
+										</option>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+									</select>
+								</div>
+							</div>
+							<div class="flex flex-wrap pt-9 gap-5">
+								<div class="flex">
+									<p class="text-xl mb-3 font-medium text-red-600">3. Category*</p>
+									<select name="category"
+										class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+										required>
+										<option class="" value="{{record.category}}" selected hidden>
+											{% if record.category %} 
+												{{ record.category }} 
+											{% else %}
+												--Select-- 
+											{% endif %}
+										</option>
+										<option value="SC">SC</option>
+										<option value="ST">ST</option>
+										<option value="OBC">OBC</option>
+										<option value="UR/Gen">UR/Gen</option>
+										<option value="EWS">EWS</option>
+										<option value="PH (Physically Handicapped/Person with Disability)">PH (Physically Handicapped/Person with Disability)</option>
+										<option value="Defence">Defence</option>
+										<option value="J & K Migrant">J & K Migrant</option>
+									</select>
+								</div>
+								<div class="flex">
+									<p class="text-xl mb-3 font-medium text-red-600">Region*</p>
+									<select name="region"
+										class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+										required>
+										<option class="" value="{{record.region}}" selected hidden>
+											{% if record.region %} 
+												{{ record.region }} 
+											{% else %}
+												--Select-- 
+											{% endif %}
+										</option>
+										<option value="Delhi">Delhi</option>
+										<option value="Outside Delhi">Outside Delhi</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- First Tab Ends Here -->
+					<!-- Save and Next Button -->
+					<div class="flex justify-between pt-9">
+						<button
+                            class="text-lg bg-slate-300 hover:bg-zinc-700 hover:text-zinc-400 hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm"
+                            id="nextBtn">
+                            Save and Next&rarr;
+                        </button>
+					</div>
+				</div>
+			</form>
+			<!-- FORM ends -->
+        </div>
+		<!-- Main Card ends -->
+	</div>
+	<!-- The outermost Div ends -->
+</body>
+
+<script>
+
+	// To convert each input with type text to uppercase
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const textInputs = document.querySelectorAll('input[type="text"]');
+        
+        textInputs.forEach((input) => {
+          input.addEventListener('input', () => {
+            input.value = input.value.toUpperCase();
+          });
+        });
+      });
+
+	// For checking if a phone number is valid or not
+	// we passed that elements id which calls the function
+	// we called this function onblur, i.e. when user leaves that input field after typing
+	function validatenumber(id_passed) {
+		const number = document.getElementById(id_passed);
+		var warning = document.getElementById('warning');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if ((number.value.length < 10) || (number.value.length > 10)) {
+			number.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "10 Digit Mobile Number required! (Without Country Code)";
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+		}
+		else {
+			number.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = "";
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+		}
+	}
+
+	// for validating email
+	function validateemail(id_passed) {
+		const email = document.getElementById(id_passed);
+		var warning = document.getElementById('warning');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if ((email.value.includes('@')) && (email.value.includes('.'))) {
+			email.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = "";
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+		}
+		else {
+			email.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a valid email";
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+		}
+	}
+
+</script>

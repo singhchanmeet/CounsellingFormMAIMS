@@ -1,0 +1,850 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Application Form for Management Quota Seats for MAIT ">
+	<title>MAIMS BBALLB Application Form</title>
+	<link rel="stylesheet" href="../../static/output_btech.css">
+	<link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Main Header Starts -->
+    <div class="header bg-blue-950 flex shadow shadow-black">
+        <img class="w-[250px] sm:w-[250px]" src="../../static/media/maitlogomain.png" alt="MAIMS" />
+        <p class="font-semibold mx-5 text-2xl sm:text-5xl text-white">
+            BBALLB Edit Details
+        </p>
+    </div>
+    <!-- Main Header Ends -->
+
+    <!-- Outermost Div Starts -->
+    <div class="outermost-div bg-blue-100">
+        <!-- Main Card Starts -->
+        <div class="flex main-card w-[90%]  m-auto lg:flex-row flex-col  bg-gray-100 px-5">
+
+
+            <!-- FORM starts -->
+            <form action="/bballb-edit/" method="post" id="myForm" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form m-auto pt-2 pl-5">
+                    <h1 class="text-red-600 text-3xl font-medium">
+                        Application form for Management Quota Seats : BBALLB 2023-24
+                    </h1>
+                    <p class="centered" style="color: #8597a3;">(Fields marked with * are mandatory)</p>
+                    <br>
+                    
+                    <!-- First Tab to be displayed: Candidate Details -->
+                    <div class="tab">
+                        <div class="candidate-details pt-8 flex flex-col">
+                            <div class="flex flex-col flex-wrap">
+                                <p class="text-xl mb-3 text-red-600 font-medium">
+                                    1. Name of the Candidate*
+                                </p>
+                                <div class="flex-col flex">
+
+                                    <div class="flex flex-wrap">
+                                        <input type="text"
+                                            class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                                            placeholder="First Name*" name="candidate_first_name" value="{{record.candidate_first_name}}" required />
+                                        <input type="text"
+                                            class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                                            placeholder="Middle Name(Optional)" name="candidate_middle_name" value="{{record.candidate_middle_name}}" />
+                                        <input type="text"
+                                            class="my-2 mx-1 px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                                            placeholder="Last Name*" name="candidate_last_name" value="{{record.candidate_last_name}}" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap">
+                                <div class="flex-col flex mx-3 pt-5">
+                                    <label class="font-medium text-red-600" for="">Candidate's Mobile*</label><input
+                                        class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                                        required placeholder="Mobile" type="text" name="candidate_number" value="{{record.candidate_number}}"
+                                        id="candidate_number" oninput="validatenumber(this.id); return false;" />
+                                </div>
+                                <div class="flex-col flex mx-3 pt-5">
+                                    <label class="font-medium text-red-600" for="">Candidate's Email*</label><input
+                                        class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                                        required placeholder="Email" type="email" name="email" id="email" value="{{record.email}}"
+                                        oninput="validateemail(this.id); return false;" />
+                                </div>
+                                <div class="flex-col flex mx-3 pt-5">
+                                    <label class="font-medium text-red-600" for="">Candidate's Telephone</label><input
+                                        class="px-2 py-1 w-[180px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                                        placeholder="Telephone" type="text" />
+                                </div>
+                            </div>
+                            <p id="warning"></p>
+                            <div class="flex flex-wrap pt-9 gap-5">
+                                <div class="flex">
+                                    <p class="text-xl mb-3 font-medium text-red-600">
+                                        2. Date of Birth*
+                                    </p>
+                                    <input type="text"
+                                        class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+                                        value="{{record.dob|date:'Y-m-d'}}" name="dob" required readonly/>
+                                </div>
+                                <div class="flex">
+                                    <p class="text-xl mb-3 font-medium text-red-600">Gender*</p>
+                                    <select name="gender"
+                                        class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+                                        required>
+                                        <option class="" value="{{record.gender}}" selected hidden>
+                                            {% if record.gender %} 
+                                                {{ record.gender }} 
+                                            {% else %}
+                                                --Select-- 
+                                            {% endif %}
+                                        </option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap pt-9 gap-5">
+                                <div class="flex">
+                                    <p class="text-xl mb-3 font-medium text-red-600">3. Category*</p>
+                                    <select name="category"
+                                        class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+                                        required>
+                                        <option class="" value="{{record.category}}" selected hidden>
+                                            {% if record.category %} 
+                                                {{ record.category }} 
+                                            {% else %}
+                                                --Select-- 
+                                            {% endif %}
+                                        </option>
+                                        <option value="SC">SC</option>
+                                        <option value="ST">ST</option>
+                                        <option value="OBC">OBC</option>
+                                        <option value="UR/Gen">UR/Gen</option>
+                                        <option value="EWS">EWS</option>
+                                        <option value="PH (Physically Handicapped/Person with Disability)">PH (Physically Handicapped/Person with Disability)</option>
+                                        <option value="Defence">Defence</option>
+                                        <option value="J & K Migrant">J & K Migrant</option>
+                                    </select>
+                                </div>
+                                <div class="flex">
+                                    <p class="text-xl mb-3 font-medium text-red-600">Region*</p>
+                                    <select name="region"
+                                        class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+                                        required>
+                                        <option class="" value="{{record.region}}" selected hidden>
+                                            {% if record.region %} 
+                                                {{ record.region }} 
+                                            {% else %}
+                                                --Select-- 
+                                            {% endif %}
+                                        </option>
+                                        <option value="Delhi">Delhi</option>
+                                        <option value="Outside Delhi">Outside Delhi</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- First Tab Ends Here -->
+                    <!-- Second Tab to be displayed: Parent/Guardian Details -->
+					<div class="tab">
+						<div class="parents-details pt-8 flex flex-col">
+							<p class="text-xl mb-3 text-red-600 font-medium">
+								4. Parents Details*
+							</p>
+
+							<div class="flex flex-wrap flex-col">
+								<div class="ml-5 flex flex-col">
+									<p class="font-medium text-red-600">Father's Name</p>
+									<div class="flex flex-wrap">
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											required placeholder="First Name*" name="father_first_name" value="{{record.father_first_name}}"/>
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Middle Name(Optional)" name="father_middle_name" value="{{record.father_middle_name}}"/>
+										<input type="text"
+											class="my-2 mx-1 px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											required placeholder="Last Name*" name="father_last_name" value="{{record.father_last_name}}"/>
+									</div>
+								</div>
+								<div class="ml-5 flex flex-col">
+									<p class="font-medium text-red-600">Mother's Name</p>
+									<div class="flex flex-wrap">
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											required placeholder="First Name*" name="mother_first_name" value="{{record.mother_first_name}}"/>
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Middle Name(Optional)" name="mother_middle_name" value="{{record.mother_middle_name}}"/>
+										<input type="text"
+											class="my-2 mx-1 px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											required placeholder="Last Name*" name="mother_last_name" value="{{record.mother_last_name}}"/>
+									</div>
+								</div>
+								<div class="ml-5 flex flex-col">
+									<p class="font-medium text-red-600">Name of the Guardian</p>
+									<div class="flex flex-wrap">
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg sm:w-[350px] border-2 placeholder:text-sm"
+											placeholder="If relevant- (for outside Delhi Candidates)"
+											name="guardian_name" value="{{record.guardian_name}}"/>
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="High-education/occupation">
+								<p class="text-xl mb-3 font-medium text-red-600">
+									5. Highest Educational Qualification & Occupation of:
+								</p>
+								<div class="flex flex-wrap">
+									<div class="pt-16 sm:flex flex-col sm:ml-5 gap-6 none w-[200px]">
+
+										<p class="text-red-600 font-medium">Qualifications*</p>
+										<p class="text-red-600 font-medium">
+											Profession (Job/Business)*
+										</p>
+										<p class="text-red-600 font-medium">
+											If in Job, Designation and Name of Department
+										</p>
+										<p class="text-red-600 font-medium">
+											If in business, Kind of Business
+										</p>
+										<p class="text-red-600 font-medium">Contact No.*</p>
+										<p class="text-red-600 font-medium">Official Address</p>
+									</div>
+									<div class="flex ml-5 flex-col gap-3">
+										<p class="text-xl mb-3 font-medium text-red-600">Father:</p>
+										<select name="father_qualification"
+											class="px-2 w-40 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+											required>
+											<option class="" value="{{record.father_qualification}}" selected hidden>
+												{% if record.father_qualification %} 
+													{{ record.father_qualification }} 
+												{% else %}
+													--Qualifications--
+												{% endif %}
+											</option>
+											<option value="Intermediate">Intermediate</option>
+											<option value="Diploma">Diploma</option>
+											<option value="Graduate">Graduate</option>
+											<option value="Post Graduate">Post Graduate</option>
+											<option value="PhD">PhD</option>
+											<option value="Other">Other</option>
+										</select>
+										<select name="father_job"
+											class="px-2 w-40 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+											required>
+											<option class="" value="{{record.father_job}}" selected hidden>
+												{% if record.father_job %} 
+													{{ record.father_job }} 
+												{% else %}
+													--Profession--
+												{% endif %}
+											</option>
+											<option value="Accountant">Accountant</option>
+											<option value="Architect">Architect</option>
+											<option value="Artist">Artist</option>
+											<option value="Doctor">Doctor</option>
+											<option value="Engineer">Engineer</option>
+											<option value="Government Service">Government Service</option>
+											<option value="Lawyer">Lawyer</option>
+											<option value="Nurse">Nurse</option>
+											<option value="Police Officer">Police Officer</option>
+											<option value="Professor">Professor</option>
+											<option value="Scientist">Scientist</option>
+											<option value="Software Developer">Software Developer</option>
+											<option value="Teacher">Teacher</option>
+											<option value="Writer">Writer</option>
+											<option value="Other">Other</option>
+										</select>
+
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 w-40 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Designation" name="father_job_designation" value="{{record.father_job_designation}}"/>
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 w-40 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Business" name="father_business_type" value="{{record.father_business_type}}"/>
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 w-40 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Contact No." name="father_number" id="father_number" value="{{record.father_number}}"
+											oninput="validatenumber(this.id); return false;" required />
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 w-40 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Address" name="father_office_address" value="{{record.father_office_address}}"/>
+									</div>
+									<div class="flex ml-5 flex-col gap-3">
+										<p class="text-xl mb-3 font-medium text-red-600">Mother:</p>
+										<select name="mother_qualification"
+											class="px-2 w-40 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+											required>
+											<option class="" value="{{record.mother_qualification}}" selected hidden>
+												{% if record.mother_qualification %} 
+													{{ record.mother_qualification }} 
+												{% else %}
+													--Qualifications--
+												{% endif %}
+											</option>
+											<option value="Intermediate">Intermediate</option>
+											<option value="Diploma">Diploma</option>
+											<option value="Graduate">Graduate</option>
+											<option value="Post Graduate">Post Graduate</option>
+											<option value="PhD">PhD</option>
+											<option value="Other">Other</option>
+										</select>
+										<select name="mother_job"
+											class="px-2 w-40 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+											required>
+											<option class="" value="{{record.mother_job}}" selected hidden>
+												{% if record.mother_job %} 
+													{{ record.mother_job }} 
+												{% else %}
+													--Profession--
+												{% endif %}
+											</option>
+											<option value="Accountant">Accountant</option>
+											<option value="Architect">Architect</option>
+											<option value="Artist">Artist</option>
+											<option value="Doctor">Doctor</option>
+											<option value="Engineer">Engineer</option>
+											<option value="Government Service">Government Service</option>
+											<option value="Lawyer">Lawyer</option>
+											<option value="Nurse">Nurse</option>
+											<option value="Police Officer">Police Officer</option>
+											<option value="Professor">Professor</option>
+											<option value="Scientist">Scientist</option>
+											<option value="Software Developer">Software Developer</option>
+											<option value="Teacher">Teacher</option>
+											<option value="Writer">Writer</option>
+											<option value="Other">Other</option>
+										</select>
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 w-40 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Designation" name="mother_job_designation" value="{{record.mother_job_designation}}"/>
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 w-40 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Business" name="mother_business_type" value="{{record.mother_business_type}}"/>
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 w-40 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Contact No." name="mother_number" id="mother_number" value="{{record.mother_number}}"
+											oninput="validatenumber(this.id); return false;" required />
+										<input type="text"
+											class="my-2 px-2 mx-1 py-1 bg-slate-200 text-gray-700 w-40 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+											placeholder="Address" name="mother_office_address" value="{{record.mother_office_address}}"/>
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="flex-col flex pt-5">
+								<label class="font-medium text-red-600" for="">Complete Postal Address of
+									Father/Guardian*</label><input
+									class="px-2 w-[200px] sm:w-[500px] py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+									placeholder="Complete Address*" type="text" name="complete_address" value="{{record.complete_address}}" required />
+							</div>
+						</div>
+					</div>
+					<!-- Second Tab Ends Here -->
+                    <!-- Third Tab to be displayed: 10th 12th Result Details -->
+					<div class="tab">
+						<div class="10th/12th-details">
+							<br>
+							<p class="text-xl mb-3 text-red-600 font-medium">6. Result*</p>
+							<div class="sm:w-max w-[250px] sm:flex-col justify-center px-5 flex-row flex gap-3">
+								<div class="flex w-[200px] sm:w-[650px] sm:flex-row flex-col justify-between gap-2">
+									<p class="text-red-600 font-semibold">Examination</p>
+									<p class="text-red-600 font-semibold">Board/University</p>
+									<p class="text-red-600 font-semibold">Year</p>
+									<p class="text-red-600 font-semibold sm:ml-6">Roll No.</p>
+									<p class="text-red-600 font-semibold ">Name of the School</p>
+								</div>
+								<div class="flex w-[100px] sm:w-[650px] sm:flex-row sm:mr-8 flex-col justify-between">
+									<p class="ml-10 w-20 font-medium text-red-600">12<sup>th</sup></p>
+									<input
+										class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-20 sm:w-28"
+										type="text" placeholder="" name="board_12th" required value="{{record.board_12th}}">
+									<input
+										class="input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 h-6"
+										type="text" placeholder="" name="year_of_12th" id="year_of_12th" required oninput="validateYear(this.id);" value="{{record.year_of_12th}}">
+									<input
+										class="input-field input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-32 h-6"
+										type="text" placeholder="" name="rollno_12th" id="rollno_12th" required oninput="validateRank(this.id);" value="{{record.rollno_12th}}">
+
+									<input
+										class="input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-32 h-6"
+										type="text" placeholder="" name="school_12th" required value="{{record.school_12th}}">
+
+								</div>
+								<div class="flex w-[100px] sm:w-[650px] sm:flex-row flex-col justify-between">
+									<p class="ml-10 w-20 font-medium text-red-600">10<sup>th</sup></p>
+									<input
+										class="input-field input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-28 h-6"
+										type="text" placeholder="" name="board_10th" required value="{{record.board_10th}}">
+									<input
+										class="input-field input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 h-6"
+										type="text" placeholder="" name="year_of_10th" id="year_of_10th" required oninput="validateYear(this.id);" value="{{record.year_of_10th}}">
+
+									<input
+										class="input-field input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-32 h-6"
+										type="text" placeholder="" name="rollno_10th" id="rollno_10th" required oninput="validateRank(this.id);" value="{{record.rollno_10th}}">
+
+									<input
+										class="input-field input-field px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm w-20 sm:w-32 h-6"
+										type="text" placeholder="" name="school_10th" required value="{{record.school_10th}}">
+								</div>
+
+							</div>
+							<div class=" flex flex-wrap gap-5 pt-10 m-0">
+								<div class="12th-class">
+									<p class="font-medium text-lg text-red-600">In class 12th indicate % marks in:</p>
+									<div class="flex flex-col w-52 gap-2">
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">1<sup>st</sup> Subject*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="first_subject_12th" id="mark2"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												 required value="{{record.first_subject_12th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600 ">2<sup>nd</sup> Subject*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="second_subject_12th" id="mark3"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												 required value="{{record.second_subject_12th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">3<sup>rd</sup> Subject*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="third_subject_12th" id="mark4"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												 required value="{{record.third_subject_12th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">4<sup>th</sup> Subject*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="fourth_subject_12th" id="mark1"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												 required value="{{record.fourth_subject_12th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">5<sup>th</sup> subject</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="other_subject_12th" id="mark5"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												value="{{record.other_subject_12th}}" >
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">6<sup>th</sup> subject</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="other_subject_2_12th" id="mark6"
+												oninput="calculatePercentage(); validateIntegerValue(this.id);"
+												value="{{record.other_subject_2_12th}}" >
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">Aggregate</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28 disabled:bg-gray-300"
+												style="background-color:lightgrey;" type="text" placeholder="" readonly
+												name="aggregate_12th" id="percentageOutput" required value="{{record.aggregate_12th}}">
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="10th-class ">
+									<p class="font-medium text-lg text-red-600">In class 10th indicate % marks in:</p>
+									<div class="flex flex-col w-52 gap-2">
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">Maths*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="maths_10th" id="mark1_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												 required value="{{record.maths_10th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">Science*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="science_10th" id="mark2_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												 required value="{{record.science_10th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">English*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="english_10th" id="mark3_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												 required value="{{record.english_10th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">SST*</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="sst_10th" id="mark4_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												 required value="{{record.sst_10th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">5<sup>th</sup> Subject</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="other_subject_10th" id="mark5_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												value="{{record.other_subject_10th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">6<sup>th</sup>Subject</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28"
+												type="text" placeholder="" name="other_subject_2_10th" id="mark6_10th"
+												oninput="calculatePercentage2(); validateIntegerValue(this.id);"
+												value="{{record.other_subject_2_10th}}">
+										</div>
+										<div class="flex items-center justify-between">
+											<p class="font-medium text-red-600">Aggregate</p>
+											<input
+												class="input-field bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-6 w-28 disabled:bg-gray-300"
+												style="background-color:lightgrey;" readonly type="text" placeholder=""
+												name="aggregate_10th" id="percentageOutput2" required value="{{record.aggregate_10th}}">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p id="warning2"></p>
+					</div><br>
+					<!-- Third Tab Ends Here -->
+                    <!-- Fourth Tab to be displayed: CET Details -->
+					<div class="tab">
+						<div class="JEE-result">
+							<p class="text-xl mb-3 text-red-600 font-medium">7. GGSIPU-CET/CUET 2023 Paper
+								*</p>
+                            <div class="flex">
+                                <p class="text-xl mb-3 font-medium text-red-600">Select paper (CUET/CET) in which candidate appeared*</p>
+                                <select class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+                                name="cet_or_cuet" id="cet_or_cuet" onChange="check_cet_cuet(); return false;" required>
+                                    <option class="" value="{{record.cet_or_cuet}}" selected hidden>
+                                        {% if record.cet_or_cuet %} 
+                                            {{ record.cet_or_cuet }} 
+                                        {% else %}
+                                            --Select-- 
+                                        {% endif %}
+                                    </option>
+                                    <option value="CUET">CUET</option>
+                                    <option value="CET">CET</option>
+                                </select>
+                            </div>
+							<div class="flex flex-wrap">
+								<div class="flex-col flex mx-3 pt-5">
+									<label class="font-medium text-red-600" for="">Roll No.*</label><input
+										class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+										placeholder="Roll No." type="text" name="cet_rollno" required id="cet_rollno" onchange="validateRank(this.id);" value="{{record.cet_rollno}}"/>
+								</div>
+								<div class="flex-col flex mx-3 pt-5">
+									<label class="font-medium text-red-600" for="">Rank*</label><input
+										class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+										placeholder="Rank of Candidate" type="text" name="cet_rank" required id="cet_rank" onchange="validateRank(this.id);" value="{{record.cet_rank}}"/>
+								</div>
+							</div>
+							<p id="warning2"></p>
+							<br>
+							<div class="ggsipu-reg-no">
+								<div class="special-achievement">
+									<p class="text-xl mb-3 text-red-600 font-medium">8. Any special achievement(s) in
+										academics/co-curricular/cultural/sports activities :</p>
+									<input
+										class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm sm:w-[500px]"
+										placeholder="" type="text" name="special_achievements" value="{{record.special_achievements}}"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Fourth Tab Ends Here -->
+                    <!-- Fifth Tab to be displayed: Other Documents -->
+					<div class="tab">
+						<div class="other-docs flex flex-wrap flex-col justify-between w-1/2">
+							<p class="text-xl mb-3 text-red-600 font-medium">9. Documents</p><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Passport Size Photograph of Candidate*</label>
+									<a class="underline" style="color: blue;" href="{{ record.passport_photo.url }}" target="_blank" >Passport Photo</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Aadhar Card*</label>
+									<a class="underline" style="color: blue;" href="{{ record.aadhaar.url }}" target="_blank" >Aadhar Card</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">PAN Card*</label>
+									<a class="underline" style="color: blue;" href="{{ record.pancard.url }}" target="_blank" >Pan Card</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Class X Marksheet Here*</label>
+									<a class="underline" style="color: blue;" href="{{ record.marksheet_10th.url }}" target="_blank" >X Marksheet</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Class XII Marksheet*</label>
+									<a class="underline" style="color: blue;" href="{{ record.marksheet_12th.url }}" target="_blank" >XII Marksheet</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">{% if record.cet_or_cuet == "CET" %} CET {% else %} CUET {% endif %} Result*</label>
+									<a class="underline" style="color: blue;" href="{{ record.cet_result.url }}" target="_blank" >{% if record.cet_or_cuet == "CET" %} CET {% else %} CUET {% endif %} Result</a>
+								</div>
+							</div><br>
+							<div class="input pt-2 flex flex-wrap">
+								<label for="" class="text-base text-red-600 font-medium">GGSIPU Registration Proof*</label>
+								<a class="underline" style="color: blue;" href="{{ record.ipuregistrationproof.url }}" target="_blank" >IPU Registration</a>
+							</div>
+						</div>
+					</div><br>
+                    <!-- Sixth Tab ends here -->
+                    <p class="text-xl mb-3 text-red-600 font-medium">Transaction ID/Reference No.*</p>
+                    <input class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                        placeholder="Transaction ID" type="text" name="transaction_id" value={{ record.transaction_id }} required />
+						<br>
+                        <a class="underline" style="color: blue;" href="{{ record.transaction_proof.url }}" target="_blank" >Transaction Proof</a>
+                    <!-- Submit Button -->
+                    <div class="flex justify-between pt-9">
+                        <button
+                            class="text-lg bg-slate-300 hover:bg-zinc-700 hover:text-zinc-400 hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm"
+                            id="nextBtn">
+                            SAVE
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- FORM ends -->
+        </div>
+        <!-- Main Card ends -->
+    </div>
+    <!-- The outermost Div ends -->
+
+</body>
+
+</html>
+
+
+<script>
+
+    // To convert each input with type text to uppercase
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const textInputs = document.querySelectorAll('input[type="text"]');
+        
+        textInputs.forEach((input) => {
+          input.addEventListener('input', () => {
+            input.value = input.value.toUpperCase();
+          });
+        });
+      });
+
+	// for calculating 12th aggregate
+	function calculatePercentage() {
+		var mark1 = parseFloat(document.getElementById("mark1").value);
+		var mark2 = parseFloat(document.getElementById("mark2").value);
+		var mark3 = parseFloat(document.getElementById("mark3").value);
+		var mark4 = parseFloat(document.getElementById("mark4").value);
+		var mark5 = parseFloat(document.getElementById("mark5").value);
+		var mark6 = parseFloat(document.getElementById("mark6").value);
+		var marks = [mark1, mark2, mark3, mark4, mark5, mark6].filter(function (mark) {
+			return !isNaN(mark);
+		});
+		var totalMarks = marks.reduce(function (a, b) {
+			return a + b;
+		}, 0);
+		var numberOfMarks = marks.length;
+		var percentage = (totalMarks / (numberOfMarks * 100)) * 100;
+		(document.getElementById("percentageOutput")).value = Number(percentage.toFixed(2));
+	}
+
+	//for calculating 10th aggregate
+	function calculatePercentage2() {
+		var mark1_10th = parseFloat(document.getElementById("mark1_10th").value);
+		var mark2_10th = parseFloat(document.getElementById("mark2_10th").value);
+		var mark3_10th = parseFloat(document.getElementById("mark3_10th").value);
+		var mark4_10th = parseFloat(document.getElementById("mark4_10th").value);
+		var mark5_10th = parseFloat(document.getElementById("mark5_10th").value);
+		var mark6_10th = parseFloat(document.getElementById("mark6_10th").value);
+		var marks = [mark1_10th, mark2_10th, mark3_10th, mark4_10th, mark5_10th, mark6_10th].filter(function (mark) {
+			return !isNaN(mark);
+		});
+		var totalMarks = marks.reduce(function (a, b) {
+			return a + b;
+		}, 0);
+		var numberOfMarks = marks.length;
+		var percentage = (totalMarks / (numberOfMarks * 100)) * 100;
+		(document.getElementById("percentageOutput2")).value = Number(percentage.toFixed(2));
+	}
+
+
+	// For checking if a phone number is valid or not
+	// we passed that elements id which calls the function
+	// we called this function onblur, i.e. when user leaves that input field after typing
+	function validatenumber(id_passed) {
+		const number = document.getElementById(id_passed);
+		var warning = document.getElementById('warning');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if ((number.value.length < 10) || (number.value.length > 10)) {
+			number.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "10 Digit Mobile Number required! (Without Country Code)";
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+		}
+		else {
+			number.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = "";
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+		}
+	}
+
+	// for validating email
+	function validateemail(id_passed) {
+		const email = document.getElementById(id_passed);
+		var warning = document.getElementById('warning');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if ((email.value.includes('@')) && (email.value.includes('.'))) {
+			email.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = "";
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+		}
+		else {
+			email.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a valid email";
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+		}
+	}
+
+	// for validating marks
+	function validateIntegerValue(id_passed) {
+		const marks = document.getElementById(id_passed);
+		const intValue = parseInt(marks.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (Number.isInteger(intValue) && intValue >= 0 && intValue <= 100) {
+			// Value is a valid integer between 0 and 100
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			marks.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			marks.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a value between 0 and 100";
+		}
+	}
+
+	// for validating percentile
+	function validatePercentile(id_passed) {
+		const percentile = document.getElementById(id_passed);
+		const decimalValue = parseFloat(percentile.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (!isNaN(decimalValue) && decimalValue >= 0.0 && decimalValue <= 100.0) {
+			// Value is a valid integer between 0 and 100
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			percentile.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			percentile.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a value between 0 and 100";
+		}
+	}
+
+
+	// for validating year
+	function validateYear(id_passed) {
+		const year = document.getElementById(id_passed);
+		const intValue = parseInt(year.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (Number.isInteger(intValue) && intValue >= 2000 && intValue <= 2023) {
+			// Value is a valid integer between 2000 and 2023
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			year.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			year.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter year between 2000 and 2023";
+		}
+	}
+
+	// for validating rank and rollno. that they are positive
+	function validateRank(id_passed) {
+		const rank = document.getElementById(id_passed);
+		const intValue = parseInt(rank.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (Number.isInteger(intValue) && intValue > 0) {
+			// Value is a valid positive integer
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			rank.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			rank.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a positive integer";
+		}
+	}
+
+</script>

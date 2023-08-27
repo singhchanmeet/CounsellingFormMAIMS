@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Application Form for Management Quota Seats for MAIMS ">
+	<title>MAIMS BCOM Application</title>
+	<link rel="stylesheet" href="../../static/output_btech.css">
+	<link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+	<!-- Main Header Starts -->
+	<div class="header bg-blue-950 flex shadow shadow-black">
+		<img class="w-[250px] sm:w-[250px]" src="../../static/media/maitlogomain.png" alt="MAIMS" />
+		<p class="font-semibold mx-5 text-2xl sm:text-5xl text-white">
+			BCOM Application Form
+		</p>
+	</div>
+	<!-- Main Header Ends -->
+	<!-- If user tries to go to payment without filling this tab -->
+	{% if messages %}
+		{% for message in messages %}
+			{% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+		{% endfor %}
+	{% endif %}
+    <!-- Outermost Div Starts -->
+	<div class="outermost-div bg-blue-100">
+		<!-- Main Card Starts -->
+		<div class="flex main-card w-[90%]  m-auto lg:flex-row flex-col  bg-gray-100 px-5">
+
+            <!-- Progress Bar Starts -->
+			<div class="form-fields lg:mr-16 flex gap-2 flex-col top-0 h-[50%] relative lg:sticky pt-10">
+				<!-- we will check one field of each tag -->
+				<!-- if that field is filled then we will make border green, otherwise it will remian black -->
+				<!-- Checking first tab by candidate_first_name -->
+				{% if record.candidate_first_name %}
+					<a href="/bcom1/">
+						<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bcom1/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking second tab by father_first_name -->
+				{% if record.father_first_name %}
+					<a href="/bcom2/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Parent and Guardian Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bcom2/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+							Parent and Guardian Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking third tab by board_10th -->
+				{% if record.board_10th %}
+					<a href="/bcom3/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bcom3/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking fourth tab by cet_rollno -->
+				{% if record.cet_rollno %}
+					<a href="/bcom4/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bcom4/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility</p>
+					</a>
+				{% endif %}
+				<!-- Checking fifth tab by passport_photo -->
+				{% if record.passport_photo %}
+					<a href="/bcom5/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/bcom5/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents</p>
+					</a>
+				{% endif %}
+				<a href="/bcom6/">
+				<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+					Payment</p>
+				</a>
+			</div>
+			<!-- Progress Bar Ends -->
+
+            <!-- FORM starts -->
+			<form action="/bcom4/" method="post" id="myForm" enctype="multipart/form-data">
+				{% csrf_token %}
+
+                <div class="form m-auto pt-2 pl-5">
+                    <h1 class="text-red-600 text-3xl font-medium">
+						Application form for Management Quota Seats : BCOM 2023-24
+					</h1>
+					<p class="centered" style="color: #8597a3;">(Fields marked with * are mandatory)</p>
+					<br>
+
+					<!-- Fourth Tab to be displayed: JEE Details -->
+					<div class="tab">
+                        <div class="JEE-result">
+                            <p class="text-xl mb-3 text-red-600 font-medium">7. CUET/GGSIPU-CET*</p>
+                            <div class="flex">
+                                <p class="text-xl mb-3 font-medium text-red-600">Select paper (CUET/CET) in which candidate appeared*</p>
+                                <select class="px-2 py-1 mx-5 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm h-10"
+                                name="cet_or_cuet" id="cet_or_cuet" onChange="check_cet_cuet(); return false;" required>
+                                    <option class="" value="{{record.cet_or_cuet}}" selected disabled hidden>
+                                        {% if record.cet_or_cuet %} 
+                                            {{ record.cet_or_cuet }} 
+                                        {% else %}
+                                            --Select-- 
+                                        {% endif %}
+                                    </option>
+                                    <option value="CUET">CUET</option>
+                                    <option value="CET">CET</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-wrap">
+                                <div class="flex-col flex mx-3 pt-5">
+                                    <label class="font-medium text-red-600" for="">Roll No.*</label><input
+                                        class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                                        placeholder="CET Roll No." type="text" name="cet_rollno" required id="cet_rollno" {% if record.cet_rollno == None %} value="" {% else %} value="{{record.cet_rollno}}" {% endif %} />
+                                </div>
+                                <div class="flex-col flex mx-3 pt-5">
+                                    <label class="font-medium text-red-600" for="">Rank*</label><input
+                                        class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm"
+                                        placeholder="Rank of Candidate" type="text" name="cet_rank" required id="cet_rank" oninput="validateRank(this.id);" {% if record.cet_rank == None %} value="" {% else %} value="{{record.cet_rank}}" {% endif %}/>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="ggsipu-reg-no">
+								<div class="special-achievement">
+									<p class="text-xl mb-3 text-red-600 font-medium">8. Any special achievement(s) in
+										academics/co-curricular/cultural/sports activities :</p>
+									<input
+										class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm sm:w-[500px]"
+										placeholder="" type="text" name="special_achievements" value="{{record.special_achievements}}"/>
+								</div>
+							</div>
+                            <br>
+                        </div>
+                    </div>
+					<!-- Fourth Tab Ends Here -->
+					<!-- Save and Next Button -->
+					<div class="flex justify-between pt-9">
+						<button
+                            class="text-lg bg-slate-300 hover:bg-zinc-700 hover:text-zinc-400 hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm"
+                            id="nextBtn">
+                            Save and Next&rarr;
+                        </button>
+					</div>
+				</div>
+			</form>
+            <!-- FORM ends -->
+        </div>
+		<!-- Main Card ends -->
+	</div>
+	<!-- The outermost Div ends -->
+</body>
+
+<script>
+
+	// To convert each input with type text to uppercase
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const textInputs = document.querySelectorAll('input[type="text"]');
+        
+        textInputs.forEach((input) => {
+          input.addEventListener('input', () => {
+            input.value = input.value.toUpperCase();
+          });
+        });
+      });
+
+
+	// for validating rank and rollno. that they are positive
+	function validateRank(id_passed) {
+		const rank = document.getElementById(id_passed);
+		const intValue = parseInt(rank.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (Number.isInteger(intValue) && intValue > 0) {
+			// Value is a valid positive integer
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			rank.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			rank.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a positive integer";
+		}
+	}
+
+	// for validating percentile
+	function validatePercentile(id_passed) {
+		const percentile = document.getElementById(id_passed);
+		const decimalValue = parseFloat(percentile.value);
+		var warning = document.getElementById('warning2');
+		var goodColor = "#37ff00";
+		var badColor = "#ffdddd";
+		var badColor2 = "#FF3222";
+		var plainColor = "#fff";
+		if (!isNaN(decimalValue) && decimalValue >= 0.0 && decimalValue <= 100.0) {
+			// Value is a valid integer between 0 and 100
+			document.getElementById('nextBtn').disabled = false; // Enable submit button
+			percentile.style.backgroundColor = plainColor;
+			warning.style.color = plainColor;
+			warning.innerHTML = ""
+		}
+		else {
+			// Value is invalid
+			document.getElementById('nextBtn').disabled = true; // Disable submit button
+			percentile.style.backgroundColor = badColor;
+			warning.style.color = badColor2;
+			warning.innerHTML = "Please enter a value between 0 and 100";
+		}
+	}
+
+    // for rendering corresponding text for cet or cuet 
+    function check_cet_cuet() {
+
+        var cet_or_cuet = document.getElementById('cet_or_cuet')
+        var cet_rank = document.getElementById('cet_rank')
+        var cet_rollno = document.getElementById('cet_rollno')
+
+        if (cet_or_cuet.value == "CUET") {
+            cet_rank.placeholder = "   (CUET 2023 Rank)" ;
+            cet_rollno.placeholder = "  (CUET 2023 Roll Number)" ;
+        }
+        else if (cet_or_cuet.value == "CET") {
+            cet_rank.placeholder = "   (CET 2023 Rank)" ;
+            cet_rollno.placeholder = " (CET 2023 Roll Number)" ;
+        }
+    }
+</script>

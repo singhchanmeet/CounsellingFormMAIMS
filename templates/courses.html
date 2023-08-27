@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="This is a form for MAIT ">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <title>MAIMS Courses</title>
+    <link rel="stylesheet" href="{% static 'login_style.css' %}">
+    <link rel="stylesheet" href="{% static 'output_index.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header bg-blue-950 flex shadow shadow-black">
+        <img class="w-[250px] sm:w-[250px]" src="/static/media/maitlogomain.png" alt="MAIMS" />
+        <p class="font-semibold mx-5 text-2xl sm:text-5xl text-white">
+        MAIMS Application Form
+        </p>
+    </div>
+
+    <form action="/courses/" class="card-form py-10" method="post">
+        {% csrf_token %}
+
+        <div class=" bg-zinc-200 card flex flex-col justify-center items-center gap-5 m-auto shadow-zinc-400 rounded-md py-10 w-[80%] m-auto">
+            <h1 class="input-label-main text-center text-red-600 text-2xl font-medium">
+                Select Your Course
+            </h1>
+            <div class="tiles flex flex-wrap  justify-center gap-5 w-[80%] w-[400px] m-auto">    
+                
+                <div class="course-name justify-center gap-2 items-center flex  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300"
+                    onclick="handleClick(event)">
+                    <input type="radio" id="bba" class="course-field opacity-0" name="course" value="BBA" />
+                    <label class="field-name text-2xl cursor-pointer" for="bba">BBA</label>
+                    <img src="../static/media/Flat_tick_icon.svg.png" class="w-5 hidden flat_tick_icon" alt="">
+                </div>
+                <div class="course-name justify-center gap-2 items-center flex  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300"
+                    onclick="handleClick(event)">
+                    <input type="radio" id="bcom" class="course-field opacity-0" name="course" value="BCOM" />
+                    <label class="field-name text-2xl cursor-pointer" for="bcom">B.Com.(H)</label>
+                    <img src="../static/media/Flat_tick_icon.svg.png" class="w-5 hidden flat_tick_icon" alt="">
+                </div>
+                <div class="course-name justify-center gap-2 items-center flex  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300"
+                    onclick="handleClick(event)">
+                    <input type="radio" id="bjmc" class="course-field opacity-0" name="course" value="BJMC" />
+                    <label class="field-name text-2xl cursor-pointer" for="bjmc">BA(JMC)</label>
+                    <img src="../static/media/Flat_tick_icon.svg.png" class="w-5 hidden flat_tick_icon" alt="">
+                </div>
+                <div class="course-name justify-center gap-2 items-center flex  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300"
+                    onclick="handleClick(event)">
+                    <input type="radio" id="eco" class="course-field opacity-0" name="course" value="ECO" />
+                    <label class="field-name text-2xl cursor-pointer" for="eco">BA Eco(H)</label>
+                    <img src="../static/media/Flat_tick_icon.svg.png" class="w-5 hidden flat_tick_icon" alt="">
+                </div>
+                <div class="course-name justify-center gap-2 items-center flex  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300"
+                    onclick="handleClick(event)">
+                    <input type="radio" id="ballb" class="course-field opacity-0" name="course" value="BALLB" />
+                    <label class="field-name text-2xl cursor-pointer" for="ballb">BA-LLB(H)</label>
+                    <img src="../static/media/Flat_tick_icon.svg.png" class="w-5 hidden flat_tick_icon" alt="">
+                </div>
+                <div class="course-name justify-center gap-2 items-center flex  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300"
+                    onclick="handleClick(event)">
+                    <input type="radio" id="bballb" class="course-field opacity-0" name="course" value="BBALLB" />
+                    <label class="field-name text-2xl cursor-pointer" for="bballb">BBA-LLB(H)</label>
+                    <img src="../static/media/Flat_tick_icon.svg.png" class="w-5 hidden flat_tick_icon" alt="">
+                </div>
+                <div class="course-name justify-center gap-2 items-center flex  w-[200px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 border-[1px] placeholder:text-sm cursor-pointer hover:bg-slate-300 shadow-sm shadow-blue-300"
+                    onclick="handleClick(event)">
+                    <input type="radio" id="llm" class="course-field opacity-0" name="course" value="LLM" />
+                    <label class="field-name text-2xl cursor-pointer" for="llm">LLM</label>
+                    <img src="../static/media/Flat_tick_icon.svg.png" class="w-5 hidden flat_tick_icon" alt="">
+                </div>
+                
+            </div>
+            <h1 class="input-label-main text-center text-red-600 text-lg font-medium">
+                Enter the CAPTCHA below:
+            </h1>
+            <div class="flex items-center [100px]">
+                <div id="captcha" class="font-mono p-2" style="font-style: italic; background-image: url(../static/media/captcha-img.jpg);" ></div><img src="../static/media/regenerate-captcha.png"  id="regenerateButton" class="mx-3" width="25px" height="25px">
+            </div>
+            <input type="text" id="captchaInput" class="px-2 py-1 bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-700 rounded-lg border-2 placeholder:text-sm" placeholder="Enter CAPTCHA">
+            <div class="flex justify-center">
+                <input class="text-lg bg-slate-300 hover:bg-zinc-700 hover:text-zinc-400 hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm " type="submit" id="submitButton" value="Proceed">
+            </div>
+        </div><br>
+    </form>
+</body>
+
+<script>
+    const courseNameDivs = document.querySelectorAll(".course-name");
+
+    // Function to handle the click event on course name/checkbox group divs
+    function handleDivClick(event) {
+        // Remove the 'selected' class from all course name/checkbox group divs
+        courseNameDivs.forEach((div) => {
+            div.classList.remove("selected");
+        });
+
+        // Add the 'selected' class to the clicked course name/checkbox group div
+        event.currentTarget.classList.add("selected");
+    }
+
+    // Add click event listener to each course name/checkbox group div
+    courseNameDivs.forEach((div) => {
+        div.addEventListener("click", handleDivClick);
+    });
+
+    function handleClick(event) {
+        // Check if the clicked element is a radio button
+        if (
+            event.target.tagName.toLowerCase() === "input" &&
+            event.target.type === "radio"
+        ) {
+            return; // Do nothing if the clicked element is a radio button
+        }
+
+        // Get the parent div of the clicked element
+        var clickedDiv = event.currentTarget;
+
+        // Get the radio button within the clicked div
+        var clickedRadioButton = clickedDiv.querySelector(
+            "input[type='radio']"
+        );
+
+        // Get all the radio buttons
+        var radioButtons = document.getElementsByName("course");
+
+        // Loop through the radio buttons and uncheck them all
+        for (var i = 0; i < radioButtons.length; i++) {
+            radioButtons[i].checked = false;
+        }
+
+        // Check the clicked radio button
+        clickedRadioButton.checked = true;
+
+    }
+
+    const generateCaptcha = () => {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let captcha = '';
+
+        for (let i = 0; i < 6; i++) {
+            const randomIndex = Math.floor(Math.random() * chars.length);
+            captcha += chars[randomIndex];
+        }
+
+        return captcha;
+    };
+
+    const updateCaptcha = () => {
+        const captchaDiv = document.getElementById('captcha');
+        const regenerateButton = document.getElementById('regenerateButton');
+        const submitButton = document.getElementById('submitButton');
+
+        captchaDiv.textContent = generateCaptcha();
+        submitButton.disabled = true;
+    };
+
+    const checkCaptcha = () => {
+        const captchaInput = document.getElementById('captchaInput').value;
+        const captchaDiv = document.getElementById('captcha');
+        const submitButton = document.getElementById('submitButton');
+
+        if (captchaInput === captchaDiv.textContent) {
+            submitButton.disabled = false;
+        } else {
+            submitButton.disabled = true;
+        }
+    };
+
+    const regenerateButton = document.getElementById('regenerateButton');
+    regenerateButton.addEventListener('click', updateCaptcha);
+
+    const captchaInput = document.getElementById('captchaInput');
+    captchaInput.addEventListener('input', checkCaptcha);
+
+    // Initialize CAPTCHA
+    updateCaptcha();
+        
+</script>

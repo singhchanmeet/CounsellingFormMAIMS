@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 hidden">
+    <meta name="description" content="This is an admission form for MAIT ">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <title>MAIMS Application</title>
+    <link rel="stylesheet" href="../../static/output_index.css">
+    <link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+
+<body class="bg-blue-100">
+    <div class="header bg-blue-950 flex shadow shadow-black">
+        <img class="w-[250px] sm:w-[250px]" src="../../static/media/maitlogomain.png" alt="" />
+        <p class="font-semibold xl:ml-[500px] mx-5 text-3xl sm:text-5xl text-white">
+            Application Form
+        </p>
+    </div>
+    <form action="/index/" class="card-form" method="post" >
+        {% csrf_token %}
+        <div class="sign-up-form ">
+            <h1 class="text-red-600 text-3xl font-medium text-center py-5">
+                Registration
+            </h1>
+            <hr class="text-gray-700 bg-gray-300 p-[1px] w-[80%] m-auto">
+            <div class="signup-form-fields w-[75%] m-auto bg-zinc-200 shadow-lg shadow-zinc-400">
+                <div class="flex flex-wrap justify-between shadow-sm mt-5  px-4 py-5 rounded-md">
+                    <div class="flex-col flex mx-3 pt-5">
+                        <label class="font-medium text-sm pb-2 text-red-600" for="">GGSIPU Registration Number*</label><input
+                            class="px-2 py-1 w-[180px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-500   border-[1px] shadow-sm shadow-blue-300 placeholder:text-sm"
+                            placeholder="IPU Registration No." type="text" name="ipu_registration" required />
+                    </div>
+                    <div class="flex-col flex mx-3 pt-5">
+                        <label class="font-medium text-sm pb-2 text-red-600" for="">Candidate Name*</label><input
+                            class="px-2 py-1 w-[180px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-500   border-[1px] shadow-sm shadow-blue-300 placeholder:text-sm"
+                            placeholder="Name" type="text" name="candidate_name" required />
+                    </div>
+                    <div class="flex-col flex mx-3 pt-5">
+                        <label class="font-medium text-sm pb-2 text-red-600" for="">ISD Code*</label><select
+                            class="px-2 py-1 w-[180px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-500 border-[1px] shadow-sm shadow-blue-300 placeholder:text-sm"
+                            name="" id="">
+                            <option value="">India(+91)</option>
+                        </select>
+                    </div>
+                    <div class="flex-col flex mx-3 pt-5">
+                        <label class="font-medium text-sm pb-2 text-red-600" for="">Mobile No*</label><input
+                            class="px-2 py-1 w-[180px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-500   border-[1px] shadow-sm shadow-blue-300 placeholder:text-sm"
+                            placeholder="Mobile Number" type="text" name="candidate_mobile" required />
+                    </div>
+                    <div class="flex-col flex mx-3 pt-5">
+                        <label class="font-medium text-sm pb-2 text-red-600" for="">Email Id*</label><input
+                            class="px-2 py-1 w-[180px] bg-slate-200 text-gray-700 placeholder:text-gray-400 border-blue-500   border-[1px] shadow-sm shadow-blue-300 placeholder:text-sm"
+                            placeholder="Email Id" type="email" name="candidate_email" required />
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="pb-10  bg-zinc-200 card flex flex-col justify-center items-center gap-5 w-[75%] m-auto shadow-md shadow-zinc-400 rounded-md">
+                <p class="ml-10 font-medium pb-2 text-red-600">Already Signed Up?<span
+                        class="text-blue-600 text-[1.3rem] "><a href="/login" class="hover:underline"> Login</a></span>
+                </p>
+                <div class="action flex justify-center">
+                    <button
+                        class="text-lg bg-slate-300 hover:bg-zinc-300 hover:text-zinc-700 hover:cursor-pointer hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm action-button"
+                        type="submit" id="proceed-button" value="Proceed">Proceed</button>
+                </div>
+            </div>
+        </div>
+        
+    </form>
+    </div>
+</body>
+
+</html>
+
+<script>
+    // To convert each input with type text to uppercase
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const textInputs = document.querySelectorAll('input[type="text"]');
+        
+        textInputs.forEach((input) => {
+          input.addEventListener('input', () => {
+            input.value = input.value.toUpperCase();
+          });
+        });
+      });
+</script>
+

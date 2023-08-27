@@ -1,0 +1,295 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Application Form for Management Quota Seats for MAIMS ">
+	<title>MAIMS ECO-HONS Application</title>
+	<link rel="stylesheet" href="../../static/output_btech.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="shortcut icon" href="/static/media/logo.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+	<!-- Main Header Starts -->
+	<div class="header bg-blue-950 flex shadow shadow-black">
+		<img class="w-[250px] sm:w-[250px]" src="../../static/media/maitlogomain.png" alt="MAIMS" />
+		<p class="font-semibold mx-5 text-2xl sm:text-5xl text-white">
+			ECO-HONS Application Form
+		</p>
+	</div>
+	<!-- Main Header Ends -->
+	<!-- If user tries to go to payment without filling this tab -->
+	{% if messages %}
+		{% for message in messages %}
+			{% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+		{% endfor %}
+	{% endif %}
+    <!-- Outermost Div Starts -->
+	<div class="outermost-div bg-blue-100">
+		<!-- Main Card Starts -->
+		<div class="flex main-card w-[90%]  m-auto lg:flex-row flex-col  bg-gray-100 px-5">
+
+            <!-- Progress Bar Starts -->
+			<div class="form-fields lg:mr-16 flex gap-2 flex-col top-0 h-[50%] relative lg:sticky pt-10">
+				<!-- we will check one field of each tag -->
+				<!-- if that field is filled then we will make border green, otherwise it will remian black -->
+				<!-- Checking first tab by candidate_first_name -->
+				{% if record.candidate_first_name %}
+					<a href="/eco1/">
+						<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco1/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Candidate Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking second tab by father_first_name -->
+				{% if record.father_first_name %}
+					<a href="/eco2/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Parent and Guardian Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco2/">
+						<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+							Parent and Guardian Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking third tab by board_10th -->
+				{% if record.board_10th %}
+					<a href="/eco3/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco3/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Educational Details</p>
+					</a>
+				{% endif %}
+				<!-- Checking fourth tab by cet_rollno -->
+				{% if record.cet_rollno %}
+					<a href="/eco4/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco4/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Qualification and Eligibility</p>
+					</a>
+				{% endif %}
+				<!-- Checking fifth tab by passport_photo -->
+				{% if record.passport_photo %}
+					<a href="/eco5/">
+					<p class="semibold text-sm font-medium border-b-2 border-green py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents &#10004;</p>
+					</a>
+				{% else %}
+					<a href="/eco5/">
+					<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+						Documents</p>
+					</a>
+				{% endif %}
+				<a href="/eco6/">
+				<p class="semibold text-sm font-medium border-b-2 border-black py-2 hover:cursor-pointer hover:text-blue-900">
+					Payment</p>
+				</a>
+			</div>
+			<!-- Progress Bar Ends -->
+
+			<!-- If documents are already submitted then we will only give a preview option -->
+			<!-- Else we will show the normal form -->
+
+			{% if record.passport_photo %} 
+				<div class="form m-auto pt-2 pl-5">
+					<h1 class="text-red-600 text-3xl font-medium">
+						Application form for Management Quota Seats : ECO-HONS 2023-24
+					</h1>
+					<p class="centered" style="color: #8597a3;">(Fields marked with * are mandatory)</p>
+					<br>
+					<!-- Sixth Tab to be displayed: Other Documents -->
+					<div class="tab">
+						<div class="other-docs flex flex-wrap flex-col justify-between w-1/2">
+							<p class="text-xl mb-3 text-red-600 font-medium">9. Documents</p><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Passport Size Photograph of Candidate*</label>
+									<a class="underline" style="color: blue;" href="{{ record.passport_photo.url }}" target="_blank" > Passport Photo</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Aadhar Card*</label>
+									<a class="underline" style="color: blue;" href="{{ record.aadhaar.url }}" target="_blank" >Aadhar Card</a> 
+									<!-- <iframe src="{{ record.aadhaar.url }}" width="100%" height="200px"></iframe> -->
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">PAN Card*</label>
+									<a class="underline" style="color: blue;" href="{{ record.pancard.url }}" target="_blank" >Pan Card</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Class X Marksheet Here*</label>
+									<a class="underline" style="color: blue;" href="{{ record.marksheet_10th.url }}" target="_blank" >X Marksheet</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">Class XII Marksheet*</label>
+									<a class="underline" style="color: blue;" href="{{ record.marksheet_12th.url }}" target="_blank" >XII Marksheet</a>
+								</div>
+							</div><br>
+							<div class="flex flex-wrap">
+								<div class="input pt-2">
+									<label for="" class="text-base text-red-600 font-medium">{% if record.cet_or_cuet == "CET" %} CET {% else %} CUET {% endif %} Result*</label>
+									<a class="underline" style="color: blue;" href="{{ record.cet_result.url }}" target="_blank" >{% if record.cet_or_cuet == "CET" %} CET {% else %} CUET {% endif %}  Result</a>
+								</div>
+							</div><br>
+							<div class="input pt-2 flex flex-col">
+								<label for="" class="text-base text-red-600 font-medium">GGSIPU Registration Proof*</label>
+								<a class="underline" style="color: blue;" href="{{ record.ipuregistrationproof.url }}" target="_blank" >IPU Registration</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<!-- FORM starts -->
+				<form action="/eco5/" method="post" id="myForm" enctype="multipart/form-data">
+					{% csrf_token %}
+
+					<div class="form m-auto pt-2 pl-5">
+						<h1 class="text-red-600 text-3xl font-medium">
+							Application form for Management Quota Seats : ECO-HONS 2023-24
+						</h1>
+						<p class="centered" style="color: #8597a3;">(Fields marked with * are mandatory)</p>
+						<br>
+
+						<!-- Fifth Tab to be displayed: Other Documents -->
+						<div class="tab">
+							<div class="other-docs flex flex-wrap justify-between w-1/2">
+								<p class="text-xl mb-3 text-red-600 font-medium">9. Documents</p>
+								<div class="flex flex-wrap">
+									<div class="input pt-2">
+										<label for="" class="text-base text-red-600 font-medium">Upload Passport Size
+											Photograph of Candidate
+											Here*</label>
+										<input name="passport_photo" type="file" required accept="image/*" id="myfile1"
+											class="w-[250px] rounded-md border-2 border-blue-700 text-gray-600 my-4 bg-gray-200"
+											placeholder="No file Chosen" />
+										<div class="card-info">
+											<p>(Only JPG/JPEG file of Size: 827 x 1063 pixels (3.5 cm x 4.5 cm) )
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="flex flex-wrap">
+									<div class="input pt-2">
+										<label for="" class="text-base text-red-600 font-medium">Upload Aadhar Card*</label>
+										<p class="text-sm">(Please upload in PDF format only)</p>
+										<input name="aadhaar"
+											class="sm:w-[300px] w-[250px] rounded-md border-2 border-blue-700 text-gray-600 my-4 bg-gray-200"
+											type="file" required accept="application/pdf" id="myfile5">
+									</div>
+								</div>
+								<div class="flex flex-wrap">
+									<div class="input pt-2">
+										<label for="" class="text-base text-red-600 font-medium">Upload PAN Card*</label>
+										<p class="text-sm">(Please upload in PDF format only)</p>
+										<input name="pancard"
+											class=" xl:ml-7  sm:w-[300px] w-[250px] rounded-md border-2 border-blue-700 text-gray-600 my-4 bg-gray-200"
+											type="file" required accept="application/pdf" id="myfile6">
+									</div>
+								</div>
+								<div class="flex flex-wrap">
+									<div class="input pt-2">
+										<label for="" class="text-base text-red-600 font-medium">Upload Class X
+											Marksheet Here*</label>
+										<p class="text-sm">(Please upload in PDF format only)</p>
+										<input name="marksheet_10th" type="file" required
+											accept="application/pdf" id="myfile3"
+											class="sm:w-[220px] w-[220px] rounded-md border-2 border-blue-700 text-gray-600 my-4 bg-gray-200"
+											placeholder="No file Chosen" />
+									</div>
+								</div>
+								<div class="flex flex-wrap">
+									<div class="input pt-2">
+										<label for="" class="text-base text-red-600 font-medium">Upload Class
+											XII Marksheet Here*</label>
+										<p class="text-sm">(Please upload in PDF format only)</p>
+										<input name="marksheet_12th" type="file" required
+											accept="application/pdf" id="myfile4"
+											class="sm:w-[220px] w-[220px] rounded-md border-2 border-blue-700 text-gray-600 my-4 bg-gray-200"
+											placeholder="No file Chosen" />
+									</div>
+								</div>
+								<div class="flex flex-wrap">
+									<div class="input pt-2">
+										<label for="" class="text-base text-red-600 font-medium">Upload CET/CUET
+											Result*</label>
+											<p class="text-sm">(Please upload in PDF format only)</p>
+										<input name="cet_result" type="file" required accept="application/pdf" id="myfile1"
+											class="sm:w-[300px] w-[250px] rounded-md border-2 border-blue-700 text-gray-600 my-4 bg-gray-200"
+											placeholder="No file Chosen" />
+									</div>
+								</div>
+								<div class="input pt-2 flex flex-col">
+									<label for="" class="text-base text-red-600 font-medium">Upload GGSIPU Registration
+										Proof*</label>
+										<p class="text-sm">(Please upload in PDF format only)</p>
+									<input name="ipuregistrationproof" type="file" required accept="application/pdf"
+										id="myfile7"
+										class="sm:w-[300px] w-[250px] rounded-md border-2 border-blue-700 text-gray-600 my-4 bg-gray-200"
+										placeholder="No file Chosen" />
+								</div>
+							</div>
+						</div>
+						<!-- Fifth Tab Ends Here -->
+						<!-- Save and Next Button -->
+						<div class="flex justify-between pt-9">
+							<button
+								class="text-lg bg-slate-300 hover:bg-zinc-700 hover:text-zinc-400 hover:border-blue-600 border-2 px-4 py-1 border-black font-mono font-semibold text-blue-700 rounded-sm"
+								id="nextBtn">
+								Save and Next&rarr;
+							</button>
+						</div>
+					</div>
+				</form>
+				<!-- FORM ends --> 
+			{% endif %}
+
+            
+        </div>
+		<!-- Main Card ends -->
+	</div>
+	<!-- The outermost Div ends -->
+</body>
+
+<script>
+	// To convert each input with type text to uppercase
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const textInputs = document.querySelectorAll('input[type="text"]');
+        
+        textInputs.forEach((input) => {
+          input.addEventListener('input', () => {
+            input.value = input.value.toUpperCase();
+          });
+        });
+      });
+</script>
