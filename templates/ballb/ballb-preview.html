@@ -21,6 +21,14 @@
 
 <body class="bg-blue-50">
 
+    <!-- When there is some message like "Fees Submitted"-->
+    {% if messages %}
+		{% for message in messages %}
+			{% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+		{% endfor %}
+	{% endif %}
+
+
     <div id="{{record.cet_rank}}" class="">
         {% comment %} Main Card starts {% endcomment %}
         <div class="card p-6">

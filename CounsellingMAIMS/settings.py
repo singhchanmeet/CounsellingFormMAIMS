@@ -143,3 +143,24 @@ EMAIL_PORT = 587
 
 EMAIL_HOST_USER = 'noreply@mait.ac.in'
 EMAIL_HOST_PASSWORD = 'TesT@654321&&'
+
+# For logging errors:
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'error.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}

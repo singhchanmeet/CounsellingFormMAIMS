@@ -13,14 +13,24 @@ class Login(models.Model):
     password = models.CharField(max_length=25)
     candidate_name = models.CharField(max_length=100)
     candidate_email = models.EmailField(max_length=100, unique=False)
-    candidate_mobile = models.PositiveBigIntegerField(unique=False)
-    course = models.CharField(max_length=100, blank=True)     
+    candidate_mobile = models.PositiveBigIntegerField(unique=False)     
     ip_address = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "Login"    #so that Django doesnt add the default 's' for plural in table name
         db_table = "login"
+
+
+# Because the same user can apply for multiple course (for eg ballb/bballb , eco/bba/bcom, etc.)
+# So taking seperate table for ipu_registration and course
+class CoursesLogin(models.Model):
+    ipu_registration = models.PositiveBigIntegerField()  
+    course = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Login with Courses"   
+        db_table = "course_login"
 
 
 # Allowed IP addresses
@@ -34,6 +44,20 @@ class AllowedIP(models.Model):
         db_table = "allowed_ip_addresses"
 
 
+
+# For storing bank details
+class BankDetails(models.Model):
+    ipu_registration = models.PositiveBigIntegerField(unique=True)
+    course = models.CharField(max_length=25)
+    account_holder_name = models.CharField(max_length=75)
+    account_number = models.CharField(max_length=50)
+    bank_name = models.CharField(max_length=100)
+    ifsc_code = models.CharField(max_length=50)
+    cheque_copy = models.FileField(upload_to=utils.cheque_rename, blank=True)
+
+    class Meta:
+        verbose_name_plural = "Bank Details"    #so that Django doesnt add the default 's' for plural in table name
+        db_table = "bank_details"
 
 
 

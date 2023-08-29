@@ -1,5 +1,5 @@
 from django.contrib import admin
-from form.models import AllowedIP, Login, Bba, BbaTemp, Bcom, BcomTemp, Bjmc, BjmcTemp, Ballb, BallbTemp, Bballb, BballbTemp, Eco, EcoTemp, Llm, LlmTemp
+from form.models import AllowedIP, Login, Bba, BbaTemp, Bcom, BcomTemp, Bjmc, BjmcTemp, Ballb, BallbTemp, Bballb, BballbTemp, Eco, EcoTemp, Llm, LlmTemp, BankDetails, CoursesLogin
 from import_export.admin import ExportActionMixin
 from django.shortcuts import render
 from django.contrib.sessions.models import Session
@@ -607,9 +607,23 @@ class LlmAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # For Login
 class LoginAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_display = ('candidate_name','ipu_registration','password', 'candidate_email','course','ip_address','created_at')
-    list_filter = ['course']         #for adding filter option
+    list_display = ('candidate_name','ipu_registration','password', 'candidate_email', 'ip_address','created_at')
     search_fields = ['ipu_registration',]
+
+
+
+# For bank details
+class BankDetailsAdmin(ExportActionMixin, admin.ModelAdmin):
+    list_display = ('ipu_registration','course', 'account_number','account_holder_name')
+    list_filter = ['course']         #for adding filter option
+
+
+
+# For bank details
+class CoursesLoginAdmin(ExportActionMixin, admin.ModelAdmin):
+    list_display = ('ipu_registration','course', )
+    list_filter = ['course']         #for adding filter option
+
 
 
 # register method takes at most 2 arguements at a time
@@ -637,6 +651,8 @@ admin.site.register(Llm, LlmAdmin)
 
 
 admin.site.register(Login, LoginAdmin)
+admin.site.register(CoursesLogin, CoursesLoginAdmin)
+admin.site.register(BankDetails, BankDetailsAdmin)
 
 admin.site.register(AllowedIP)
 admin.site.register(Session)

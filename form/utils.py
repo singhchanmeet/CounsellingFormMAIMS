@@ -951,3 +951,13 @@ def llm_graduationresult_rename(instance, filename):
         return os.path.join('llm/graduationresult', new_name)
     else:
         return filename
+    
+
+# Cheque Copy Rename Function (renaming by account number)
+def cheque_rename(instance, filename):
+    ext = filename.split('.')[-1]
+    if instance.pk:
+        new_name = '{}.{}'.format(instance.account_number, ext)
+        return os.path.join('cheque_copies/', new_name)
+    else:
+        return filename 
