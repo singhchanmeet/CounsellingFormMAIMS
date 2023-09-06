@@ -14,8 +14,8 @@ class Login(models.Model):
     candidate_name = models.CharField(max_length=100)
     candidate_email = models.EmailField(max_length=100, unique=False)
     candidate_mobile = models.PositiveBigIntegerField(unique=False)     
-    ip_address = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+    ip_address = models.CharField(max_length=100, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
 
     class Meta:
         verbose_name_plural = "Login"    #so that Django doesnt add the default 's' for plural in table name
