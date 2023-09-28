@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2023 at 11:42 AM
+-- Generation Time: Sep 28, 2023 at 08:57 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,6 +31,13 @@ CREATE TABLE `allowed_ip_addresses` (
   `id` bigint(20) NOT NULL,
   `ip_address` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `allowed_ip_addresses`
+--
+
+INSERT INTO `allowed_ip_addresses` (`id`, `ip_address`) VALUES
+(1, '0.0.0.0');
 
 -- --------------------------------------------------------
 
@@ -97,78 +104,78 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (22, 'Can change session', 6, 'change_session'),
 (23, 'Can delete session', 6, 'delete_session'),
 (24, 'Can view session', 6, 'view_session'),
-(25, 'Can add login', 7, 'add_login'),
-(26, 'Can change login', 7, 'change_login'),
-(27, 'Can delete login', 7, 'delete_login'),
-(28, 'Can view login', 7, 'view_login'),
-(29, 'Can add courses login', 8, 'add_courseslogin'),
-(30, 'Can change courses login', 8, 'change_courseslogin'),
-(31, 'Can delete courses login', 8, 'delete_courseslogin'),
-(32, 'Can view courses login', 8, 'view_courseslogin'),
-(33, 'Can add allowed ip', 9, 'add_allowedip'),
-(34, 'Can change allowed ip', 9, 'change_allowedip'),
-(35, 'Can delete allowed ip', 9, 'delete_allowedip'),
-(36, 'Can view allowed ip', 9, 'view_allowedip'),
+(25, 'Can add allowed ip', 7, 'add_allowedip'),
+(26, 'Can change allowed ip', 7, 'change_allowedip'),
+(27, 'Can delete allowed ip', 7, 'delete_allowedip'),
+(28, 'Can view allowed ip', 7, 'view_allowedip'),
+(29, 'Can add ballb', 8, 'add_ballb'),
+(30, 'Can change ballb', 8, 'change_ballb'),
+(31, 'Can delete ballb', 8, 'delete_ballb'),
+(32, 'Can view ballb', 8, 'view_ballb'),
+(33, 'Can add ballb temp', 9, 'add_ballbtemp'),
+(34, 'Can change ballb temp', 9, 'change_ballbtemp'),
+(35, 'Can delete ballb temp', 9, 'delete_ballbtemp'),
+(36, 'Can view ballb temp', 9, 'view_ballbtemp'),
 (37, 'Can add bank details', 10, 'add_bankdetails'),
 (38, 'Can change bank details', 10, 'change_bankdetails'),
 (39, 'Can delete bank details', 10, 'delete_bankdetails'),
 (40, 'Can view bank details', 10, 'view_bankdetails'),
-(41, 'Can add bba temp', 11, 'add_bbatemp'),
-(42, 'Can change bba temp', 11, 'change_bbatemp'),
-(43, 'Can delete bba temp', 11, 'delete_bbatemp'),
-(44, 'Can view bba temp', 11, 'view_bbatemp'),
-(45, 'Can add bba', 12, 'add_bba'),
-(46, 'Can change bba', 12, 'change_bba'),
-(47, 'Can delete bba', 12, 'delete_bba'),
-(48, 'Can view bba', 12, 'view_bba'),
-(49, 'Can add bcom temp', 13, 'add_bcomtemp'),
-(50, 'Can change bcom temp', 13, 'change_bcomtemp'),
-(51, 'Can delete bcom temp', 13, 'delete_bcomtemp'),
-(52, 'Can view bcom temp', 13, 'view_bcomtemp'),
-(53, 'Can add bcom', 14, 'add_bcom'),
-(54, 'Can change bcom', 14, 'change_bcom'),
-(55, 'Can delete bcom', 14, 'delete_bcom'),
-(56, 'Can view bcom', 14, 'view_bcom'),
-(57, 'Can add bjmc temp', 15, 'add_bjmctemp'),
-(58, 'Can change bjmc temp', 15, 'change_bjmctemp'),
-(59, 'Can delete bjmc temp', 15, 'delete_bjmctemp'),
-(60, 'Can view bjmc temp', 15, 'view_bjmctemp'),
-(61, 'Can add bjmc', 16, 'add_bjmc'),
-(62, 'Can change bjmc', 16, 'change_bjmc'),
-(63, 'Can delete bjmc', 16, 'delete_bjmc'),
-(64, 'Can view bjmc', 16, 'view_bjmc'),
-(65, 'Can add ballb temp', 17, 'add_ballbtemp'),
-(66, 'Can change ballb temp', 17, 'change_ballbtemp'),
-(67, 'Can delete ballb temp', 17, 'delete_ballbtemp'),
-(68, 'Can view ballb temp', 17, 'view_ballbtemp'),
-(69, 'Can add ballb', 18, 'add_ballb'),
-(70, 'Can change ballb', 18, 'change_ballb'),
-(71, 'Can delete ballb', 18, 'delete_ballb'),
-(72, 'Can view ballb', 18, 'view_ballb'),
-(73, 'Can add bballb temp', 19, 'add_bballbtemp'),
-(74, 'Can change bballb temp', 19, 'change_bballbtemp'),
-(75, 'Can delete bballb temp', 19, 'delete_bballbtemp'),
-(76, 'Can view bballb temp', 19, 'view_bballbtemp'),
-(77, 'Can add bballb', 20, 'add_bballb'),
-(78, 'Can change bballb', 20, 'change_bballb'),
-(79, 'Can delete bballb', 20, 'delete_bballb'),
-(80, 'Can view bballb', 20, 'view_bballb'),
+(41, 'Can add bba', 11, 'add_bba'),
+(42, 'Can change bba', 11, 'change_bba'),
+(43, 'Can delete bba', 11, 'delete_bba'),
+(44, 'Can view bba', 11, 'view_bba'),
+(45, 'Can add bballb', 12, 'add_bballb'),
+(46, 'Can change bballb', 12, 'change_bballb'),
+(47, 'Can delete bballb', 12, 'delete_bballb'),
+(48, 'Can view bballb', 12, 'view_bballb'),
+(49, 'Can add bballb temp', 13, 'add_bballbtemp'),
+(50, 'Can change bballb temp', 13, 'change_bballbtemp'),
+(51, 'Can delete bballb temp', 13, 'delete_bballbtemp'),
+(52, 'Can view bballb temp', 13, 'view_bballbtemp'),
+(53, 'Can add bba temp', 14, 'add_bbatemp'),
+(54, 'Can change bba temp', 14, 'change_bbatemp'),
+(55, 'Can delete bba temp', 14, 'delete_bbatemp'),
+(56, 'Can view bba temp', 14, 'view_bbatemp'),
+(57, 'Can add bcom', 15, 'add_bcom'),
+(58, 'Can change bcom', 15, 'change_bcom'),
+(59, 'Can delete bcom', 15, 'delete_bcom'),
+(60, 'Can view bcom', 15, 'view_bcom'),
+(61, 'Can add bcom temp', 16, 'add_bcomtemp'),
+(62, 'Can change bcom temp', 16, 'change_bcomtemp'),
+(63, 'Can delete bcom temp', 16, 'delete_bcomtemp'),
+(64, 'Can view bcom temp', 16, 'view_bcomtemp'),
+(65, 'Can add bjmc', 17, 'add_bjmc'),
+(66, 'Can change bjmc', 17, 'change_bjmc'),
+(67, 'Can delete bjmc', 17, 'delete_bjmc'),
+(68, 'Can view bjmc', 17, 'view_bjmc'),
+(69, 'Can add bjmc temp', 18, 'add_bjmctemp'),
+(70, 'Can change bjmc temp', 18, 'change_bjmctemp'),
+(71, 'Can delete bjmc temp', 18, 'delete_bjmctemp'),
+(72, 'Can view bjmc temp', 18, 'view_bjmctemp'),
+(73, 'Can add courses login', 19, 'add_courseslogin'),
+(74, 'Can change courses login', 19, 'change_courseslogin'),
+(75, 'Can delete courses login', 19, 'delete_courseslogin'),
+(76, 'Can view courses login', 19, 'view_courseslogin'),
+(77, 'Can add eco', 20, 'add_eco'),
+(78, 'Can change eco', 20, 'change_eco'),
+(79, 'Can delete eco', 20, 'delete_eco'),
+(80, 'Can view eco', 20, 'view_eco'),
 (81, 'Can add eco temp', 21, 'add_ecotemp'),
 (82, 'Can change eco temp', 21, 'change_ecotemp'),
 (83, 'Can delete eco temp', 21, 'delete_ecotemp'),
 (84, 'Can view eco temp', 21, 'view_ecotemp'),
-(85, 'Can add eco', 22, 'add_eco'),
-(86, 'Can change eco', 22, 'change_eco'),
-(87, 'Can delete eco', 22, 'delete_eco'),
-(88, 'Can view eco', 22, 'view_eco'),
+(85, 'Can add llm', 22, 'add_llm'),
+(86, 'Can change llm', 22, 'change_llm'),
+(87, 'Can delete llm', 22, 'delete_llm'),
+(88, 'Can view llm', 22, 'view_llm'),
 (89, 'Can add llm temp', 23, 'add_llmtemp'),
 (90, 'Can change llm temp', 23, 'change_llmtemp'),
 (91, 'Can delete llm temp', 23, 'delete_llmtemp'),
 (92, 'Can view llm temp', 23, 'view_llmtemp'),
-(93, 'Can add llm', 24, 'add_llm'),
-(94, 'Can change llm', 24, 'change_llm'),
-(95, 'Can delete llm', 24, 'delete_llm'),
-(96, 'Can view llm', 24, 'view_llm');
+(93, 'Can add login', 24, 'add_login'),
+(94, 'Can change login', 24, 'change_login'),
+(95, 'Can delete login', 24, 'delete_login'),
+(96, 'Can view login', 24, 'view_login');
 
 -- --------------------------------------------------------
 
@@ -189,6 +196,13 @@ CREATE TABLE `auth_user` (
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+(1, 'pbkdf2_sha256$390000$zK05Xna0lOZXOWeKaadbQ7$PwzUr4HBLgJUiGauanVSda4rBv56JBPcYQXpQQjlxCY=', '2023-09-28 17:43:09.973119', 1, 'chanm', '', '', 'chanmeetsinghsahni@gmail.com', 1, 1, '2023-09-28 17:19:17.982174');
 
 -- --------------------------------------------------------
 
@@ -297,6 +311,13 @@ CREATE TABLE `ballb` (
   `browser_info` varchar(1000) DEFAULT NULL,
   `created_at` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ballb`
+--
+
+INSERT INTO `ballb` (`id`, `application_id`, `ipu_registration`, `allow_for_counselling`, `allow_editing`, `candidate_first_name`, `candidate_middle_name`, `candidate_last_name`, `dob`, `complete_address`, `email`, `candidate_number`, `gender`, `category`, `region`, `father_first_name`, `father_middle_name`, `father_last_name`, `mother_first_name`, `mother_middle_name`, `mother_last_name`, `father_qualification`, `mother_qualification`, `father_job`, `mother_job`, `father_job_designation`, `mother_job_designation`, `father_business_type`, `mother_business_type`, `father_number`, `mother_number`, `father_office_address`, `mother_office_address`, `guardian_name`, `board_12th`, `year_of_12th`, `rollno_12th`, `school_12th`, `aggregate_12th`, `first_subject_12th`, `second_subject_12th`, `third_subject_12th`, `fourth_subject_12th`, `other_subject_12th`, `other_subject_2_12th`, `board_10th`, `year_of_10th`, `rollno_10th`, `school_10th`, `aggregate_10th`, `maths_10th`, `science_10th`, `english_10th`, `sst_10th`, `other_subject_10th`, `other_subject_2_10th`, `cet_or_cuet`, `cet_rank`, `cet_rollno`, `special_achievements`, `passport_photo`, `cet_result`, `marksheet_10th`, `marksheet_12th`, `aadhaar`, `pancard`, `ipuregistrationproof`, `transaction_id`, `transaction_proof`, `counselling_transaction_id`, `counselling_transaction_proof`, `ip_address`, `forwarded_address`, `browser_info`, `created_at`) VALUES
+(1, 'MAIMS/MQ/2023-24/26752992', 131230000001, 0, 0, 'CHANMEET', 'SINGH', 'SAHNI', '2023-09-28', 'CC 43 E HARI NAGAR', 'chanmeetsinghsahni@gmail.com', '8800675489', 'Male', 'UR/Gen', 'Delhi', 'HARVINDER', 'SINGH', 'SAHNI', 'HARPREET', 'KAUR', 'SAHNI', 'Intermediate', 'Graduate', 'Other', 'Teacher', 'EMPLOYEE', 'EMPLOYEE', '', '', '8826225210', '9968221340', '', '', '', 'CBSE', 2022, 2345234567, 'SSMS', 72.00, 87, 9, 90, 76, '98', '', 'CBSE', 2020, 2345234589, 'SSMS', 77.40, 77, 76, 79, 75, '80', '', 'CUET', 3400, '3456345612', 'NONE', 'ballb/photographs/131230000001.jpeg', 'ballb/cetresult/131230000001.pdf', 'ballb/marksheet10th/131230000001.pdf', 'ballb/marksheet12th/131230000001.pdf', 'ballb/aadhar/131230000001.pdf', 'ballb/pancard/131230000001.pdf', 'ballb/ipuregistration/131230000001.pdf', '12345', 'ballb/transactions/131230000001.pdf', '', '', '127.0.0.1', '-1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', '2023-09-28 22:54:22');
 
 -- --------------------------------------------------------
 
@@ -564,6 +585,13 @@ CREATE TABLE `bballb` (
   `browser_info` varchar(1000) DEFAULT NULL,
   `created_at` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `bballb`
+--
+
+INSERT INTO `bballb` (`id`, `application_id`, `ipu_registration`, `allow_for_counselling`, `allow_editing`, `candidate_first_name`, `candidate_middle_name`, `candidate_last_name`, `dob`, `complete_address`, `email`, `candidate_number`, `gender`, `category`, `region`, `father_first_name`, `father_middle_name`, `father_last_name`, `mother_first_name`, `mother_middle_name`, `mother_last_name`, `father_qualification`, `mother_qualification`, `father_job`, `mother_job`, `father_job_designation`, `mother_job_designation`, `father_business_type`, `mother_business_type`, `father_number`, `mother_number`, `father_office_address`, `mother_office_address`, `guardian_name`, `board_12th`, `year_of_12th`, `rollno_12th`, `school_12th`, `aggregate_12th`, `first_subject_12th`, `second_subject_12th`, `third_subject_12th`, `fourth_subject_12th`, `other_subject_12th`, `other_subject_2_12th`, `board_10th`, `year_of_10th`, `rollno_10th`, `school_10th`, `aggregate_10th`, `maths_10th`, `science_10th`, `english_10th`, `sst_10th`, `other_subject_10th`, `other_subject_2_10th`, `cet_or_cuet`, `cet_rank`, `cet_rollno`, `special_achievements`, `passport_photo`, `cet_result`, `marksheet_10th`, `marksheet_12th`, `aadhaar`, `pancard`, `ipuregistrationproof`, `transaction_id`, `transaction_proof`, `counselling_transaction_id`, `counselling_transaction_proof`, `ip_address`, `forwarded_address`, `browser_info`, `created_at`) VALUES
+(1, 'MAIMS/MQ/2023-24/26752992', 131230000001, 0, 0, 'CHANMEET', 'SINGH', 'SAHNI', '2023-09-28', 'CC 43 E HARI NAGAR', 'chanmeetsinghsahni@gmail.com', '8800675489', 'Male', 'ST', 'Delhi', 'HARVINDER', 'SINGH', 'SAHNI', 'HARPREET', 'KAUR', 'SAHNI', 'Graduate', 'Post Graduate', 'Artist', 'Doctor', '', '', '', '', '8826225210', '9968221340', '', '', '', 'CBSE', 2022, 2345234567, 'SSMS', 65.50, 87, 9, 90, 76, '', '', 'CBSE', 2020, 2345234589, 'SSMS', 76.75, 77, 76, 79, 75, '', '', 'CET', 3400, '3456345612', '', 'bballb/photographs/131230000001.jpeg', 'bballb/cetresult/131230000001.pdf', 'bballb/marksheet10th/131230000001.pdf', 'bballb/marksheet12th/131230000001.pdf', 'bballb/aadhar/131230000001.pdf', 'bballb/pancard/131230000001.pdf', 'bballb/ipuregistration/131230000001.pdf', '12345', 'bballb/transactions/131230000001.pdf', '', '', '127.0.0.1', '-1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36', '2023-09-28 22:57:16');
 
 -- --------------------------------------------------------
 
@@ -1073,6 +1101,14 @@ CREATE TABLE `course_login` (
   `course` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `course_login`
+--
+
+INSERT INTO `course_login` (`id`, `ipu_registration`, `course`) VALUES
+(1, 131230000001, 'BALLB'),
+(2, 131230000001, 'BBALLB');
+
 -- --------------------------------------------------------
 
 --
@@ -1089,6 +1125,16 @@ CREATE TABLE `django_admin_log` (
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
+(1, '2023-09-28 17:21:07.546680', '1', '0.0.0.0', 1, '[{\"added\": {}}]', 7, 1),
+(2, '2023-09-28 17:30:56.885618', '1', 'CHANMEET SAHNI', 2, '[{\"changed\": {\"fields\": [\"Allow editing\"]}}]', 12, 1),
+(3, '2023-09-28 17:31:55.648574', '1', 'CHANMEET SAHNI', 2, '[{\"changed\": {\"fields\": [\"Allow for counselling\"]}}]', 12, 1),
+(4, '2023-09-28 17:43:48.518878', '1', 'CHANMEET SAHNI', 2, '[{\"changed\": {\"fields\": [\"Allow for counselling\", \"Allow editing\"]}}]', 12, 1);
 
 -- --------------------------------------------------------
 
@@ -1112,24 +1158,24 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
 (5, 'contenttypes', 'contenttype'),
-(9, 'form', 'allowedip'),
-(18, 'form', 'ballb'),
-(17, 'form', 'ballbtemp'),
+(7, 'form', 'allowedip'),
+(8, 'form', 'ballb'),
+(9, 'form', 'ballbtemp'),
 (10, 'form', 'bankdetails'),
-(12, 'form', 'bba'),
-(20, 'form', 'bballb'),
-(19, 'form', 'bballbtemp'),
-(11, 'form', 'bbatemp'),
-(14, 'form', 'bcom'),
-(13, 'form', 'bcomtemp'),
-(16, 'form', 'bjmc'),
-(15, 'form', 'bjmctemp'),
-(8, 'form', 'courseslogin'),
-(22, 'form', 'eco'),
+(11, 'form', 'bba'),
+(12, 'form', 'bballb'),
+(13, 'form', 'bballbtemp'),
+(14, 'form', 'bbatemp'),
+(15, 'form', 'bcom'),
+(16, 'form', 'bcomtemp'),
+(17, 'form', 'bjmc'),
+(18, 'form', 'bjmctemp'),
+(19, 'form', 'courseslogin'),
+(20, 'form', 'eco'),
 (21, 'form', 'ecotemp'),
-(24, 'form', 'llm'),
+(22, 'form', 'llm'),
 (23, 'form', 'llmtemp'),
-(7, 'form', 'login'),
+(24, 'form', 'login'),
 (6, 'sessions', 'session');
 
 -- --------------------------------------------------------
@@ -1150,25 +1196,25 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2023-08-29 09:15:58.055895'),
-(2, 'auth', '0001_initial', '2023-08-29 09:15:59.649580'),
-(3, 'admin', '0001_initial', '2023-08-29 09:16:00.155302'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2023-08-29 09:16:00.171055'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2023-08-29 09:16:00.184019'),
-(6, 'contenttypes', '0002_remove_content_type_name', '2023-08-29 09:16:00.682006'),
-(7, 'auth', '0002_alter_permission_name_max_length', '2023-08-29 09:16:00.931133'),
-(8, 'auth', '0003_alter_user_email_max_length', '2023-08-29 09:16:00.946861'),
-(9, 'auth', '0004_alter_user_username_opts', '2023-08-29 09:16:00.974694'),
-(10, 'auth', '0005_alter_user_last_login_null', '2023-08-29 09:16:01.069845'),
-(11, 'auth', '0006_require_contenttypes_0002', '2023-08-29 09:16:01.075849'),
-(12, 'auth', '0007_alter_validators_add_error_messages', '2023-08-29 09:16:01.085004'),
-(13, 'auth', '0008_alter_user_username_max_length', '2023-08-29 09:16:01.105065'),
-(14, 'auth', '0009_alter_user_last_name_max_length', '2023-08-29 09:16:01.129320'),
-(15, 'auth', '0010_alter_group_name_max_length', '2023-08-29 09:16:01.159950'),
-(16, 'auth', '0011_update_proxy_permissions', '2023-08-29 09:16:01.169984'),
-(17, 'auth', '0012_alter_user_first_name_max_length', '2023-08-29 09:16:01.189942'),
-(18, 'form', '0001_initial', '2023-08-29 09:16:02.172824'),
-(19, 'sessions', '0001_initial', '2023-08-29 09:16:02.311614');
+(1, 'contenttypes', '0001_initial', '2023-09-28 17:17:52.834559'),
+(2, 'auth', '0001_initial', '2023-09-28 17:17:53.662472'),
+(3, 'admin', '0001_initial', '2023-09-28 17:17:53.850875'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2023-09-28 17:17:53.866503'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2023-09-28 17:17:53.866503'),
+(6, 'contenttypes', '0002_remove_content_type_name', '2023-09-28 17:17:54.017487'),
+(7, 'auth', '0002_alter_permission_name_max_length', '2023-09-28 17:17:54.097266'),
+(8, 'auth', '0003_alter_user_email_max_length', '2023-09-28 17:17:54.121678'),
+(9, 'auth', '0004_alter_user_username_opts', '2023-09-28 17:17:54.155863'),
+(10, 'auth', '0005_alter_user_last_login_null', '2023-09-28 17:17:54.214791'),
+(11, 'auth', '0006_require_contenttypes_0002', '2023-09-28 17:17:54.221487'),
+(12, 'auth', '0007_alter_validators_add_error_messages', '2023-09-28 17:17:54.230351'),
+(13, 'auth', '0008_alter_user_username_max_length', '2023-09-28 17:17:54.248527'),
+(14, 'auth', '0009_alter_user_last_name_max_length', '2023-09-28 17:17:54.272438'),
+(15, 'auth', '0010_alter_group_name_max_length', '2023-09-28 17:17:54.285559'),
+(16, 'auth', '0011_update_proxy_permissions', '2023-09-28 17:17:54.305005'),
+(17, 'auth', '0012_alter_user_first_name_max_length', '2023-09-28 17:17:54.321459'),
+(18, 'form', '0001_initial', '2023-09-28 17:17:54.821896'),
+(19, 'sessions', '0001_initial', '2023-09-28 17:17:54.886581');
 
 -- --------------------------------------------------------
 
@@ -1181,6 +1227,13 @@ CREATE TABLE `django_session` (
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('qr01sobxrpemw96godacclguodtc0gu5', '.eJxVjMsOwiAQRf-FtSHC8HTpvt9ABgakaiAp7cr479qkC93ec859sYDbWsM28hJmYhcm2Ol3i5geue2A7thunafe1mWOfFf4QQefOuXn9XD_DiqO-q2jUuBAJZmMLckq46Qm4zyKaAFVNihKAW0pgXQekJxxNkMmEt4WfWbvD9AlN5A:1qlv2c:jlLxfU9bK8AePT2KohAWL3YTKgQu23SWyWZ2B3_3bcQ', '2023-10-12 17:43:10.000438');
 
 -- --------------------------------------------------------
 
@@ -1547,6 +1600,13 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id`, `application_id`, `ipu_registration`, `password`, `candidate_name`, `candidate_email`, `candidate_mobile`, `ip_address`, `created_at`) VALUES
+(1, 'MAIMS/MQ/2023-24/26752992', 131230000001, 'RWn0AFth0R4q', 'CHANMEET S', 'chanmeetsinghsahni@gmail.com', 8800675489, '127.0.0.1', '2023-09-28 17:21:46.264618');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -1770,7 +1830,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `allowed_ip_addresses`
 --
 ALTER TABLE `allowed_ip_addresses`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `auth_group`
@@ -1794,7 +1854,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -1812,13 +1872,13 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `ballb`
 --
 ALTER TABLE `ballb`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ballb_temp`
 --
 ALTER TABLE `ballb_temp`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bank_details`
@@ -1836,13 +1896,13 @@ ALTER TABLE `bba`
 -- AUTO_INCREMENT for table `bballb`
 --
 ALTER TABLE `bballb`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bballb_temp`
 --
 ALTER TABLE `bballb_temp`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bba_temp`
@@ -1878,13 +1938,13 @@ ALTER TABLE `bjmc_temp`
 -- AUTO_INCREMENT for table `course_login`
 --
 ALTER TABLE `course_login`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -1926,7 +1986,7 @@ ALTER TABLE `llm_temp`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

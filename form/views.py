@@ -162,6 +162,12 @@ def login(request):
     context = {'message': message}
     return render(request, 'login.html', context)
 
+def logout(request):
+    request.session.flush()
+    request.session.modified = True
+    return redirect('login')
+
+
 # Courses: For choice of course
 def courses(request):
     # if user is not logged in, then he shall be redirected to login page

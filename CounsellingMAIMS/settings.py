@@ -142,7 +142,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
 EMAIL_HOST_USER = 'noreply@mait.ac.in'
-EMAIL_HOST_PASSWORD = 'TesT@654321&&'
+EMAIL_HOST_PASSWORD = 'your-password'
 
 # For logging errors:
 

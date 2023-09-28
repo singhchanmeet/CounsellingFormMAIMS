@@ -39,7 +39,7 @@
 
                 <div class="form m-auto pt-2 pl-5">
                     <h1 class="text-red-600 text-3xl font-medium">
-                        Application form for Management Quota Seats : ECO-HONS 2023-24
+                        Application form for Management Quota Seats : ECO-HONS 
                     </h1>
                     <p class="centered" style="color: #8597a3;">(Fields marked with * are mandatory)</p>
                     <br>
@@ -532,7 +532,7 @@
                     <!-- Fourth Tab to be displayed: CET Details -->
 					<div class="tab">
 						<div class="JEE-result">
-							<p class="text-xl mb-3 text-red-600 font-medium">7. GGSIPU-CET/CUET 2023 Paper
+							<p class="text-xl mb-3 text-red-600 font-medium">7. GGSIPU-CET/CUET 2024 Paper
 								*</p>
                             <div class="flex">
                                 <p class="text-xl mb-3 font-medium text-red-600">Select paper (CUET/CET) in which candidate appeared*</p>
@@ -806,8 +806,8 @@
 		var badColor = "#ffdddd";
 		var badColor2 = "#FF3222";
 		var plainColor = "#fff";
-		if (Number.isInteger(intValue) && intValue >= 2000 && intValue <= 2023) {
-			// Value is a valid integer between 2000 and 2023
+		if (Number.isInteger(intValue) && intValue >= 2000 && intValue <= 2024) {
+			// Value is a valid integer between 2000 and 2024
 			document.getElementById('nextBtn').disabled = false; // Enable submit button
 			year.style.backgroundColor = plainColor;
 			warning.style.color = plainColor;
@@ -818,7 +818,7 @@
 			document.getElementById('nextBtn').disabled = true; // Disable submit button
 			year.style.backgroundColor = badColor;
 			warning.style.color = badColor2;
-			warning.innerHTML = "Please enter year between 2000 and 2023";
+			warning.innerHTML = "Please enter year between 2000 and 2024";
 		}
 	}
 

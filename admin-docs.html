@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 15px;
+        }
+
+        pre {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style: decimal;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Before Making the Project Live:</h1>
+    <ul>
+        <li>Make the database using counsellingmaims.sql file</li>
+        <li>In settings.py file, change the ALLOWED_HOSTS</li>
+        <li>In settings.py file, change the DEBUG to False</li>
+        <li>In settings.py file, change the 'NAME', 'USER', 'PASSWORD', 'HOST', and 'PORT' in DATABASES</li>
+        <li>In settings.py file, change the 'EMAIL_HOST_PASSWORD'</li>
+        <li>In templates/counselling.html file, change the fees link</li>
+        <li>In templates/bba/bba6.html file, change the fees link (Do the same for all other courses)</li>
+        <li>In the allowed_ip_addresses table in the database, add '0.0.0.0' (without quotes) if you want to allow everyone to register and login</li>
+        <li>In the allowed_ip_addresses table in the database, add the specified IP addresses if you want to allow only those to register and login</li>
+    </ul>
+
+    <h1>After Making the Project Live, Create a Superuser by the Following Command:</h1>
+    <pre>python manage.py createsuperuser</pre>
+
+    <h1>How to Use the Admin Panel:</h1>
+    <ul>
+        <li>Go to <a href="http://hostname.mait.ac.in:8000/admin/">http://hostname.mait.ac.in:8000/admin/</a> and login with the superuser credentials</li>
+        <li>To generate PDF of a submitted form, select the record and go to action -&gt; 'Generate PDF file' -&gt; Go -&gt; Print PDF for xyz rank</li>
+        <li>By default, no student is allowed to edit their record. In order to allow a student to edit his/her record, simply select the checkbox and click on Save</li>
+        <li>By default, no student is allowed for Counselling fees submission. In order to allow a student for counseling, simply select the checkbox and click on Save</li>
+        <li>You can also allow/disallow student(s) for editing and counseling by selecting their record and action -&gt; allow/disallow -&gt; Go</li>
+        <li>You can <strong>Filter</strong> students by various criteria. You will find this option on the right side of the page</li>
+        <li>You can <strong>Sort</strong> on the basis of any field by just clicking on the field name</li>
+        <li>You can <strong>Search</strong> any record by their Name or IPU Registration Number. You will find the Search option on top of the page</li>
+        <li>You can export any table's records in xls, csv, etc. formats. To do so, select the records -&gt; action -&gt; export -&gt; format -&gt; select format -&gt; go</li>
+    </ul>
+</body>
+</html>

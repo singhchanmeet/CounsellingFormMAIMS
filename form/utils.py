@@ -957,7 +957,7 @@ def llm_graduationresult_rename(instance, filename):
 def cheque_rename(instance, filename):
     ext = filename.split('.')[-1]
     if instance.pk:
-        new_name = '{}.{}'.format(instance.account_number, ext)
+        new_name = '{}.{}'.format(instance.ipu_registration, ext)
         return os.path.join('cheque_copies/', new_name)
     else:
         return filename 

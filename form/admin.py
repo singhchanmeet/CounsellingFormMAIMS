@@ -18,7 +18,7 @@ class BbaTempAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # For Bba
 class BbaAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_filter = ['cet_rank', 'cet_or_cuet']         #for adding filter option
+    list_filter = ['allow_for_counselling', 'allow_editing', 'cet_or_cuet', 'cet_rank']         #for adding filter option
     search_fields = ['cet_rank', 'candidate_first_name']         # for adding search option
     readonly_fields = ['photograph_preview']       # non editable field
     list_display = ('id','ipu_registration', 'candidate_first_name', 'allow_for_counselling', 'allow_editing', 'cet_rank', 'application_id','ip_address','created_at')    # telling which fields to display
@@ -103,7 +103,7 @@ class BcomTempAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # For Bcom
 class BcomAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_filter = ['cet_rank', 'cet_or_cuet']         #for adding filter option
+    list_filter = ['allow_for_counselling', 'allow_editing', 'cet_or_cuet', 'cet_rank']         #for adding filter option
     search_fields = ['cet_rank', 'candidate_first_name']         # for adding search option
     readonly_fields = ['photograph_preview']       # non editable field
     list_display = ('id','ipu_registration', 'candidate_first_name', 'allow_for_counselling', 'allow_editing', 'cet_rank', 'application_id','ip_address','created_at')    # telling which fields to display
@@ -188,7 +188,7 @@ class BjmcTempAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # For Bjmc
 class BjmcAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_filter = ['cet_rank', 'cet_or_cuet']         #for adding filter option
+    list_filter = ['allow_for_counselling', 'allow_editing', 'cet_or_cuet', 'cet_rank']         #for adding filter option
     search_fields = ['cet_rank', 'candidate_first_name']         # for adding search option
     readonly_fields = ['photograph_preview']       # non editable field
     list_display = ('id','ipu_registration', 'candidate_first_name', 'allow_for_counselling', 'allow_editing', 'cet_rank', 'application_id','ip_address','created_at')    # telling which fields to display
@@ -273,7 +273,7 @@ class BallbTempAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # For Ballb
 class BallbAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_filter = ['cet_rank', 'cet_or_cuet']         #for adding filter option
+    list_filter = ['allow_for_counselling', 'allow_editing', 'cet_or_cuet', 'cet_rank']         #for adding filter option
     search_fields = ['cet_rank', 'candidate_first_name']         # for adding search option
     readonly_fields = ['photograph_preview']       # non editable field
     list_display = ('id','ipu_registration', 'candidate_first_name', 'allow_for_counselling', 'allow_editing', 'cet_rank', 'application_id','ip_address','created_at')    # telling which fields to display
@@ -358,7 +358,7 @@ class BballbTempAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # For Bballb
 class BballbAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_filter = ['cet_rank', 'cet_or_cuet']         #for adding filter option
+    list_filter = ['allow_for_counselling', 'allow_editing', 'cet_or_cuet', 'cet_rank']         #for adding filter option
     search_fields = ['cet_rank', 'candidate_first_name']         # for adding search option
     readonly_fields = ['photograph_preview']       # non editable field
     list_display = ('id','ipu_registration', 'candidate_first_name', 'allow_for_counselling', 'allow_editing', 'cet_rank', 'application_id','ip_address','created_at')    # telling which fields to display
@@ -443,7 +443,7 @@ class EcoTempAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # For Eco
 class EcoAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_filter = ['cet_rank', 'cet_or_cuet']         #for adding filter option
+    list_filter = ['allow_for_counselling', 'allow_editing', 'cet_or_cuet', 'cet_rank']         #for adding filter option
     search_fields = ['cet_rank', 'candidate_first_name']         # for adding search option
     readonly_fields = ['photograph_preview']       # non editable field
     list_display = ('id','ipu_registration', 'candidate_first_name', 'allow_for_counselling', 'allow_editing', 'cet_rank', 'application_id','ip_address','created_at')    # telling which fields to display
@@ -529,7 +529,7 @@ class LlmTempAdmin(ExportActionMixin, admin.ModelAdmin):
 
 # For Llm
 class LlmAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_filter = ['cet_rank']         #for adding filter option
+    list_filter = ['cet_rank', 'allow_for_counselling']         #for adding filter option
     search_fields = ['cet_rank', 'candidate_first_name']         # for adding search option
     readonly_fields = ['photograph_preview']       # non editable field
     list_display = ('id','ipu_registration', 'candidate_first_name', 'allow_for_counselling', 'allow_editing', 'cet_rank', 'application_id','ip_address','created_at')    # telling which fields to display
@@ -657,6 +657,6 @@ admin.site.register(BankDetails, BankDetailsAdmin)
 admin.site.register(AllowedIP)
 admin.site.register(Session)
 
-admin.site.site_header = "MAIT Admin"
+admin.site.site_header = "MAIMS Admin"
 admin.site.site_title = "Admin Portal"
-admin.site.index_title = "MAIT Admin Portal"
+admin.site.index_title = "MAIMS"
